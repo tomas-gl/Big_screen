@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('answer_user', function (Blueprint $table) {
             $table->id();
+            $table->string('token', 255)->nullable();
             $table->timestamps();
         });
     }
