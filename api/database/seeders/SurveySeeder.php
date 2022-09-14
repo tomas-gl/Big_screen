@@ -16,7 +16,7 @@ class SurveySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('survey')->insert(
+        DB::table('surveys')->insert(
             array(
                 "created_at" => Carbon::now(),
                 "updated_at" => Carbon::now()

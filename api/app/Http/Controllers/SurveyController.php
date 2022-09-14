@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\Survey;
 
-class QuestionnaireController extends Controller
+class SurveyController extends Controller
 {
 
 
@@ -16,9 +16,11 @@ class QuestionnaireController extends Controller
   // Role:
     public function getQuestionsSurvey()
     {
-        $survey = Survey::where('id', '1')->get();
+        $survey = Survey::all()->first();
         $questions = Question::where('survey_id', $survey->id)->get();
-        return response()->json($questions);
+        // dd($survey, $questions);
+        return view('welcome', $questions);
+        // return response()->json($questions);
     }
 
 }
