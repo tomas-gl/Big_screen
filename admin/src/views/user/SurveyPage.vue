@@ -1,8 +1,16 @@
 <template>
   <div>
     <HeaderUser />
-    <div v-for="question in questions" :key="question.numQuestion">
-      <SurveyCard :numQuestion="question.numQuestion" :corpsQuestion="question.corpsQuestion"/>
+    <div v-for="question in questions" :key="question.num_question">
+      <div v-if="question.type_question === 'A'">
+        <SurveyCard :num_question="question.num_question" :question="question.question" :type_question="question.type_question" :possible_answers="question.possible_answers"/>
+      </div>
+      <div v-if="question.type_question === 'B'">
+        <SurveyCard :num_question="question.num_question" :question="question.question" :type_question="question.type_question"/>
+      </div>
+      <div v-if="question.type_question === 'C'">
+        <SurveyCard :num_question="question.num_question" :question="question.question" :type_question="question.type_question"/>
+      </div>
     </div>
     
   </div>
@@ -17,31 +25,15 @@ export default {
     components: { HeaderUser, SurveyCard },
     data() {
       return {
-        question: [],
-        questions: 
-          [
-            {
-              numQuestion: 1,
-              corpsQuestion: 'Corps 1',
-              typeQuestion: 'A',
-              seededAnswers: ['a', 'b', 'c']
-            },
-            {
-              numQuestion: 2,
-              corpsQuestion: 'Corps 2'
-            },
-            {
-              numQuestion: 3,
-              corpsQuestion: 'Corps 3'
-            }
-          ]
+        questions: []
       }
     },
     methods: {
       async getQuestions() {
         let url = 'http://127.0.0.1:8000/api/getQuestionsSurvey'
         await axios.get(url).then(response =>{
-          console.log(response);
+          this.questions = response.data;
+          console.log(this.questions);
         }).catch(error => console.log(error))
       }
     },
