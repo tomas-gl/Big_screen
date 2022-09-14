@@ -34,7 +34,7 @@ export default {
               numQuestion: 3,
               corpsQuestion: 'Corps 3'
             }
-          ]
+          ],
       }
     },
     methods: {
@@ -53,5 +53,4 @@ export default {
 </script>
 
 <style>
-  
 </style>
