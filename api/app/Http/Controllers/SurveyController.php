@@ -19,8 +19,8 @@ class SurveyController extends Controller
         $survey = Survey::all()->first();
         $questions = Question::where('survey_id', $survey->id)->get();
         // dd($survey, $questions);
-        return view('welcome', $questions);
-        // return response()->json($questions);
+        // return view('welcome', $questions);
+        return response()->json($questions);
     }
 
 }
