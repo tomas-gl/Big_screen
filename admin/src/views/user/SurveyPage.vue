@@ -2,7 +2,7 @@
     <div>
         <HeaderUser />
         <el-row>
-          <el-col :span="24" v-for="question in questions" :key="question.numQuestion">
+          <el-col :span="16" :offset="4" v-for="question in questions" :key="question.numQuestion">
             <SurveyCard :numQuestion="question.numQuestion" :corpsQuestion="question.corpsQuestion"/>
           </el-col>
         </el-row>
