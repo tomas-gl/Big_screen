@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id(); 
             $table->foreignId('survey_id')->references('id')->on('survey')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('num_question');
-            $table->string('question', 255);
+            $table->string('question', 255)->nullable();;
             $table->string('type_question', 100);
-            $table->json('possible_answers');
+            $table->longText('possible_answers')->nullable();;
             $table->timestamps();
         });
     }
