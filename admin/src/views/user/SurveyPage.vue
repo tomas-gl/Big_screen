@@ -1,8 +1,6 @@
 <template>
     <div>
-      <!-- <el-row> -->
         <HeaderUser />
-      <!-- </el-row> -->
         <el-row>
           <el-col :span="24" v-for="question in questions" :key="question.numQuestion">
             <SurveyCard :numQuestion="question.numQuestion" :corpsQuestion="question.corpsQuestion"/>

@@ -1,7 +1,7 @@
 <template>
-      <el-row>
+    <el-row>
         <img :src="logo" class="logo">
-      </el-row>
+    </el-row>
 </template>
 
 <script>
