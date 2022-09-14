@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->foreign('answer_user_id')->references('id')->on('answer_user')->onDelete('set null');
+            $table->foreignId('answer_user_id')->references('id')->on('answer_user')->onUpdate('cascade')->onDelete('cascade');
             $table->string('answer', 255)->nullable();
             $table->timestamps();
         });

@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id(); 
-            $table->foreign('survey_id')->references('id')->on('survey')->onDelete('set null');
+            $table->foreignId('survey_id')->references('id')->on('survey')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('num_question');
             $table->string('question', 255);
             $table->string('type_question', 100);
-            $table->enum('possible_answers');
+            $table->json('possible_answers');
             $table->timestamps();
         });
     }
