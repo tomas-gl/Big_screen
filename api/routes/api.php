@@ -15,3 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('getQuestionsSurvey',[App\Http\Controllers\SurveyController::class, 'getQuestionsSurvey']);
+
+Route::post('saveQuestionsSurvey',[App\Http\Controllers\SurveyController::class, 'saveQuestionsSurvey']);
