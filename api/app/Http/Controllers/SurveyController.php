@@ -39,51 +39,22 @@ class SurveyController extends Controller
         foreach($request->answers as $one)
         {
             $one = json_decode($one);
+
             $answer = new Answer();
-            $answer->$answer_user_id = $answerUser->id;
+            $answer->answer_user_id = $answerUser->id;
             $answer->answer = $one->answer;
-            // $answer->question_id = $one->answer;
             $answer->save();
-            // return response()->json($one);
+            
+            $answerQuestion = new AnswerQuestion();
+            $answerQuestion->answer_id = $answer->id;
+            $answerQuestion->question_id = $one->questionId;
+            $answerQuestion->save();
         }
-        // return response()->json($request->test);
+        
         return response()->json([
             'message' => 'Nouveau sondage utilisateur créé !',
             'code' => 200
         ]);
     }
-    
-
-
-
-
-
-    // public function saveQuestionsSurvey($request)
-    // {
-    //     // $answerUser = new AnswerUser();
-    //     // $answerUser->token = "test_token";
-    //     // $answerUser->save();
-
-    //     foreach($request->answers as $one)
-    //     {
-    //         $one = json_decode($one);
-
-    //         // $answer = new Answer();
-    //         // // $answer->$answer_user_id = $answerUser->id;
-    //         // $answer->answer = $one->answer;
-    //         // $answer->save();
-            
-    //         // $answerQuestion = new AnswerQuestion();
-    //         // $answerQuestion->answer_id = $answer->id;
-    //         // $answerQuestion->question_id = $one->questionId;
-    //         // $answerQuestion->save();
-    //     }
-        
-    //     return response()->json($request->all());
-    //     // return response()->json([
-    //     //     'message' => 'Nouveau sondage utilisateur créé !',
-    //     //     'code' => 200
-    //     // ]);
-    // }
 
 }
