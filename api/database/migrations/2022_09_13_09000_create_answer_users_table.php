@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('answer_question', function (Blueprint $table) {
+        Schema::create('answer_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('answer_id')->references('id')->on('answers')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('question_id')->references('id')->on('questions')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('token', 255)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('answer_question');
+        Schema::dropIfExists('answer_users');
     }
 };
