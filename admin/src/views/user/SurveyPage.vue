@@ -25,7 +25,6 @@ export default {
       return {
         questions: [],
         answers: [],
-        // user_answers: [],
       }
     },
     methods: {
@@ -43,15 +42,6 @@ export default {
           console.log(this.answers);
         }).catch(error => console.log(error))
       },
-      // getAnswers(value){
-      //   console.log(value);
-      //   this.answers.forEach(el => {
-      //     if(el['questionId'] == value['questionId']){
-      //       el['answer'] = value['answer'];
-      //     }
-      //   });
-      //   console.log(this.answers);
-      // },
       saveSurvey(){
           console.log(this.answers);
       },
