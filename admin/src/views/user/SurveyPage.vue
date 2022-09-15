@@ -34,13 +34,13 @@ export default {
         await axios.get(url).then(response =>{
           console.log(response.data);
           this.questions = response.data;
-          for (let i= 1 ; i < this.questions.length+1 ; i++) {
+          this.questions.forEach(element => {
             this.answers.push({
-              'questionId': i,
+              'questionId': element.id,
               'answer': ''
             });
-        }
-        console.log(this.answers);
+          });
+          console.log(this.answers);
         }).catch(error => console.log(error))
       },
       // getAnswers(value){
