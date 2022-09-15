@@ -4,7 +4,7 @@
       <form @submit.prevent="saveSurvey">
         <el-row>
           <el-col :span="16" :offset="4" v-for="question in questions" :key="question.numQuestion">
-            <SurveyCard :numQuestion="question.numQuestion" :corpsQuestion="question.corpsQuestion" :typeQuestion="question.typeQuestion" v-on:answerToAnswers="getAnswers"/>
+            <SurveyCard :question="question" v-on:answerToAnswers="getAnswers"/>
           </el-col>
           <el-col>
             <el-button type="submit" v-on:click="saveSurvey()">Primary</el-button>
@@ -23,21 +23,7 @@ export default {
     components: { HeaderUser, SurveyCard },
     data() {
       return {
-        question: [],
-        questions: 
-          [
-            {
-              numQuestion: 1,
-              corpsQuestion: 'Corps 1',
-              typeQuestion: 'A',
-              seededAnswers: ['a', 'b', 'c'],
-            },
-            {
-              numQuestion: 2,
-              corpsQuestion: 'Corps 2',
-              typeQuestion: 'B',
-            },
-          ],
+        questions: [],
         answers: [],
       }
     },
@@ -46,6 +32,7 @@ export default {
         let url = 'http://127.0.0.1:8000/api/getQuestionsSurvey'
         await axios.get(url).then(response =>{
           console.log(response);
+          this.questions = response.data;
         for (let i= 1 ; i < 21 ; i++) {
           this.answers.push({
             'questionId': i,
