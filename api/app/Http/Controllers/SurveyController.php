@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\Survey;
+use App\Models\Answer;
 
 class SurveyController extends Controller
 {
@@ -23,20 +24,24 @@ class SurveyController extends Controller
         return response()->json($questions);
     }
 
-    // Nom: getQuestionsSurvey
+    // Nom: saveQuestionsSurvey
     // Type:
     // Parametres ou champs (data):
     // Role:
     public function saveQuestionsSurvey(Request $request)
     {
-        $answers = new CurrencyPair();
-        // $currencyPair->first_currency_id = $request->firstCurrencyId;
-        // $currencyPair->second_currency_id = $request->secondCurrencyId;
-        // $currencyPair->conversion_rate = $request->conversionRate;
-        // $currencyPair->conversion_request = 0;
-        $currencyPair->save();
+        foreach($request->answers as $one)
+        {
+            $one = json_decode($one);
+            $answer = new Answer();
+            $answer->answer = $one->answer;
+            // $answer->question_id = $one->answer;
+            $answer->save();
+            // return response()->json($one);
+        }
+        // return response()->json($arr);
         return response()->json([
-            'message' => 'Paire de devises créé !',
+            'message' => 'Nouveau sondage utilisateur créé !',
             'code' => 200
         ]);
     }

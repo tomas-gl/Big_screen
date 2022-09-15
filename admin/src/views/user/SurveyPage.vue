@@ -1,13 +1,16 @@
 <template>
     <div>
       <HeaderUser />
-      <form @submit.prevent="saveSurvey">
+      <form  @submit.prevent="saveSurvey" novalidate>
         <el-row>
           <el-col :span="16" :offset="4" v-for="question in questions" :key="question.numQuestion">
             <SurveyCard :question="question" :answers="answers"/>
           </el-col>
           <el-col>
-            <el-button type="submit" v-on:click="saveSurvey()">Primary</el-button>
+            <span v-if="errors.length">
+              <el-alert title="{{error}}" type="error"/>
+            </span>
+            <el-button type="primary" native-type="submit">Primary</el-button>
           </el-col>
         </el-row>
       </form>
@@ -25,6 +28,7 @@ export default {
       return {
         questions: [],
         answers: [],
+        errors: [],
       }
     },
     methods: {
@@ -42,8 +46,19 @@ export default {
           console.log(this.answers);
         }).catch(error => console.log(error))
       },
-      saveSurvey(){
-          console.log(this.answers);
+
+      async saveSurvey(){
+        console.log(this.answers);
+        let formData = new FormData();
+        this.answers.forEach(element => {
+          formData.append('answers[]', JSON.stringify(element));
+        });
+        let url = 'http://127.0.0.1:8000/api/saveQuestionsSurvey';
+        await axios.post(url, formData).then((response) =>{
+            if(response.status == 200){
+                console.log(response);
+            }
+          });
       },
     },
     mounted() {
