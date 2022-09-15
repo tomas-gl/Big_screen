@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SurveyController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +13,6 @@ use App\Http\Controllers\SurveyController;
 |
 */
 
-// Route::get('/', [SurveyController::class, 'getQuestionsSurvey'], function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});

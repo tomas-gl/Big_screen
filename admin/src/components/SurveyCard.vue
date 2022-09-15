@@ -1,52 +1,52 @@
 <template>
-  <div>
-    <div class="container">
-        <h2>Question {{ num_question }}/20</h2>
-        <p>{{question}}</p>
-        <div v-if="type_question === 'B'">
-            <input type="text" v-model="answers"/>
-        </div>
-        <!-- Need method for converting string to array first-->
-        <!--:disabled for selecting only one answer ?-->
-        <div v-if="type_question === 'A'">
-            <div v-for="answer in possible_answers" :key="answer">
-                <input type="checkbox" value="{{answer}}" v-model="answers"/>
-            </div>
-        </div>
-        <div v-if="type_question === 'C'">
-            <input type="text" v-model="answers"/>
-        </div>
+  <el-card class="box-card">
+    <h2>Question {{ numQuestion }}/20</h2>
+    <p>{{corpsQuestion}}</p>
+    <div v-if="typeQuestion == 'A'">
+      <el-input
+        @change="getAnswer(numQuestion)"
+        v-model="answer"
+        type="textarea"
+        placeholder="Please text"
+      />
     </div>
-  </div>
+    <div v-else-if="typeQuestion == 'B'">
+      <el-input
+        @change="getAnswer(numQuestion)"
+        v-model="answer"
+        type="email"
+        placeholder="Please email"
+      />
+    </div>
+  </el-card>
 </template>
 
 <script>
 export default {
-    props: ['num_question', 'question', 'type_question', 'possible_answers'],
+    props: ['numQuestion', 'corpsQuestion', 'typeQuestion'],
+    emits: ["getAnswer"],
     data() {
-        return {
-            answers: []
-        }
+      return {
+        answer: '',
+      }
     },
-    mounted() {
-        //console.log(this.type_question)
+    methods:{
+      getAnswer(value){
+        this.$emit('answerToAnswers', {'questionId' : value, 'answer' : this.answer})
+      }
     }
 }
 </script>
 
 <style>
     h2 {
-    text-align: left;
-    margin-left: 1%;
+      text-align: left;
     }
-    .container {
-    box-shadow: 0 15px 30px 1px grey;
-	background: rgba(255, 255, 255, 0.90);
-	border-radius: 5px;
-	overflow: hidden;
-    color: black;
-	margin: 5em auto;
-	height: 10em;
-	width: 80%;
+    .box-card {
+      box-shadow: 0 15px 30px 1px grey;
+      background: rgba(255, 255, 255, 0.90);
+      border-radius: 5px;
+      color: black;
+      margin: 5em auto;
     }
 </style>
