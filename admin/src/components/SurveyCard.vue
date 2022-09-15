@@ -1,32 +1,38 @@
 <template>
   <el-card class="box-card">
-    <h2>Question {{ numQuestion }}/20</h2>
-    <p>{{corpsQuestion}}</p>
-    <div v-if="typeQuestion == 'A'">
+    <template #header><h2>Question {{ num_question }}/20</h2></template>
+    
+    <p>{{corps_question}}</p>
+    <div v-if="type_question == 'A'">
       <el-input
-        @change="getAnswer(numQuestion)"
+        @change="getAnswer(num_question)"
         v-model="answer"
         type="textarea"
         placeholder="Please text"
       />
     </div>
-    <div v-else-if="typeQuestion == 'B'">
+    <!--<div v-else-if="type_question == 'B'">
       <el-input
-        @change="getAnswer(numQuestion)"
+        @change="getAnswer(num_question)"
         v-model="answer"
         type="email"
         placeholder="Please email"
       />
-    </div>
+    </div>-->
   </el-card>
 </template>
 
 <script>
 export default {
-    props: ['numQuestion', 'corpsQuestion', 'typeQuestion'],
-    emits: ["getAnswer"],
+    props: ['question'],
+    //props: ['numQuestion', 'corpsQuestion', 'typeQuestion'],
+    //emits: ["getAnswer"],
     data() {
       return {
+        num_question: this.question.num_question,
+        corps_question: this.question.question,
+        type_question: this.question.type_question,
+        possible_answers: this.question.possible_answers,
         answer: '',
       }
     },
@@ -40,7 +46,7 @@ export default {
 
 <style>
     h2 {
-      text-align: left;
+      text-align: center;
     }
     .box-card {
       box-shadow: 0 15px 30px 1px grey;
