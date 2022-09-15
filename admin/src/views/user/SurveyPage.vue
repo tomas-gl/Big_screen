@@ -33,7 +33,6 @@ export default {
         let url = 'http://127.0.0.1:8000/api/getQuestionsSurvey'
         await axios.get(url).then(response =>{
           this.questions = response.data;
-          console.log(this.questions);
         }).catch(error => console.log(error))
       },
       getAnswers(value){
