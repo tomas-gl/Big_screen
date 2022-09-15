@@ -37,8 +37,8 @@
 
 <script>
 export default {
-    props: ['question'],
-    emits: ["getAnswer"],
+    props: ['question', 'answers'],
+    // emits: [],
     data() {
       return {
         id_question: this.question.id,
@@ -51,7 +51,13 @@ export default {
     },
     methods:{
       getAnswer(value){
-        this.$emit('answerToAnswers', {'questionId' : value, 'answer' : this.user_answer})
+        console.log(value);
+        this.answers.forEach(el => {
+          if(el['questionId'] == value){
+            el['answer'] = this.user_answer;
+          }
+        });
+        console.log(this.answers);
       },
       answerCleaning(possible_answers) {
         let cleaned_answers = possible_answers.split(",")
