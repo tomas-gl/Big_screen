@@ -1,16 +1,19 @@
 <template>
   <div>
-    <SurveyPage />
+    <!--<SurveyPage />-->
+    <HomeAdmin />
   </div>
 </template>
 
 <script>
+import HomeAdmin from "./views/admin/HomeAdmin.vue";
 import SurveyPage from "./views/user/SurveyPage.vue";
 
 export default {
   name: 'App',
   components: {
-    SurveyPage
+    SurveyPage,
+    HomeAdmin
 }
 }
 </script>
