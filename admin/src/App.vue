@@ -1,17 +1,13 @@
 <template>
   <div>
-    <SurveyPage />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import SurveyPage from "./views/user/SurveyPage.vue";
 
 export default {
   name: 'App',
-  components: {
-    SurveyPage
-}
 }
 </script>
 

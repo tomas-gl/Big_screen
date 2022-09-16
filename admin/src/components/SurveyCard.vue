@@ -50,13 +50,11 @@ export default {
     },
     methods:{
       getAnswer(value){
-        console.log(value);
         this.answers.forEach(el => {
           if(el['questionId'] == value){
             el['answer'] = this.user_answer;
           }
         });
-        console.log(this.answers);
       },
       answerCleaning(possible_answers) {
         let cleaned_answers = possible_answers.split(",")

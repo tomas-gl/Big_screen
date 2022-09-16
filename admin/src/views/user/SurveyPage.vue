@@ -20,7 +20,10 @@
                     <p>Grâce à votre investissement, nous vous préparons une application toujours plus
                     facile à utiliser, seul ou en famille.</p>
                     <p>Si vous désirez consulter vos réponse ultérieurement, vous pouvez consultez
-                    cette adresse: http://xxxxxxxx</p>
+                    cette adresse: 
+                    <router-link to="/surveyresult">http://localhost:8080/surveyresult</router-link>
+
+                    </p>
                   </el-descriptions-item>
                 </el-descriptions>
               </el-dialog>
@@ -46,6 +49,7 @@ export default {
         errors: [],
         successMessage: false,
         dialogTableVisible: '',
+        answerUserToken: '',
       }
     },
     methods: {
@@ -60,7 +64,6 @@ export default {
               'answer': ''
             });
           });
-          console.log(this.answers);
         }).catch(error => console.log(error))
       },
 
@@ -78,6 +81,7 @@ export default {
                 if(response.data.validatedMail){
                   this.successMessage = true;
                   this.dialogTableVisible = true;
+                  this.answerUserToken = response.data.answerUser['token'];
                   console.log(this.errors);
                 }
                 else{

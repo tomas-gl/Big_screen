@@ -61,7 +61,8 @@ class SurveyController extends Controller
             
             return response()->json([   
                 'validatedMail' => $validatedMail,
-                'Message' => 'Nouveau sondage utilisateur créé !'
+                'answerUser' => $answerUser,
+                'Message' => 'Nouveau sondage utilisateur créé !',
             ]);
         }
         else{
