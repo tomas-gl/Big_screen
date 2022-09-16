@@ -38,7 +38,6 @@
 <script>
 export default {
     props: ['question', 'answers'],
-    // emits: [],
     data() {
       return {
         id_question: this.question.id,
@@ -71,6 +70,29 @@ export default {
     }, 
     mounted() {
         this.answerCleaning(this.possible_answers)
+        if(this.type_question == "A"){
+          this.answers.forEach(el => {
+            if(el['questionId'] == this.question.id){
+              el['answer'] = this.possible_answers[0];
+              this.user_answer = this.possible_answers[0];
+            }
+          });
+        }
+        else if(this.type_question == "B"){
+          this.answers.forEach(el => {
+            if(el['questionId'] == this.question.id){
+              el['answer'] = "";
+            }
+          });
+        }
+        else if(this.type_question == "C"){
+          this.answers.forEach(el => {
+            if(el['questionId'] == this.question.id){
+              el['answer'] = 1;
+              this.user_answer = 1;
+            }
+          });
+        }
     }
 }
 </script>
