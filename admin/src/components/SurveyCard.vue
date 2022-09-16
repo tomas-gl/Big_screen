@@ -54,7 +54,6 @@ export default {
           if(el['questionId'] == value){
             el['answer'] = this.user_answer;
           }
-          console.log(this.user_answer);
         });
 
       },

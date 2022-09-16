@@ -37,13 +37,17 @@ class SurveyController extends Controller
         $validator = Validator::make($request->all(), [
             'answers.*' => 'required',
             'answers.1' => 'required|email',
+            'answers.2' => 'required|numeric'
         ],[
             'answers.*.required' => 'Veuillez renseigner tous les champs',
             'answers.1.email' => 'Veuillez rentrer une adresse mail valide',
+            'answers.2.numeric' => 'Veuillez entrer un nombre pour votre âge',
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors()->first());
+            return response()->json([
+                'validatorErrors' => $validator->errors()->first()
+            ]);
         }
         else{
             $answerUser = new AnswerUser();
