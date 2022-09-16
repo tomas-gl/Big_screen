@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Question;
 use App\Models\Survey;
 use App\Models\Answer;
@@ -33,7 +34,7 @@ class SurveyController extends Controller
     public function saveQuestionsSurvey(Request $request)
     {
         $answerUser = new AnswerUser();
-        $answerUser->token = "test_token";
+        $answerUser->token = Str::random(30);
         $answerUser->save();
 
         foreach($request->answers as $one)
