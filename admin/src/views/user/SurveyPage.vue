@@ -13,9 +13,19 @@
               </span>
             </span>
             <span v-if="successMessage">
-              Success box
+              <el-dialog v-model="dialogTableVisible" title="Sondage validé">
+                <el-descriptions>
+                  <el-descriptions-item>
+                    <p>Toute l’équipe de Bigscreen vous remercie pour votre engagement.</p>
+                    <p>Grâce à votre investissement, nous vous préparons une application toujours plus
+                    facile à utiliser, seul ou en famille.</p>
+                    <p>Si vous désirez consulter vos réponse ultérieurement, vous pouvez consultez
+                    cette adresse: http://xxxxxxxx</p>
+                  </el-descriptions-item>
+                </el-descriptions>
+              </el-dialog>
             </span>
-            <el-button type="primary" native-type="submit">Primary</el-button>
+            <el-button type="primary" native-type="submit">Finaliser</el-button>
           </el-col>
         </el-row>
       </form>
@@ -35,6 +45,7 @@ export default {
         answers: [],
         errors: [],
         successMessage: false,
+        dialogTableVisible: '',
       }
     },
     methods: {
@@ -66,6 +77,7 @@ export default {
                 console.log(response.data);
                 if(response.data.validatedMail){
                   this.successMessage = true;
+                  this.dialogTableVisible = true;
                   console.log(this.errors);
                 }
                 else{
