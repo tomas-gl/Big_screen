@@ -16,4 +16,9 @@ class Question extends Model
 		'type_question',
 		'possible_answers',
 	];
+
+	public function answer()
+	{
+		return $this->hasOne(Answer::class);
+	}
 }

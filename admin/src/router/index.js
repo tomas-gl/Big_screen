@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import SurveyPage from '../views/user/SurveyPage';
-import SurveyResult from '../views/user/SurveyResult';
+import SurveyResultPage from '../views/user/SurveyResultPage';
 
 const routes = [
     {
@@ -9,9 +9,9 @@ const routes = [
         component: SurveyPage
     },
     {
-        path: '/surveyresult',
+        path: '/surveyresult/:token?',
         name: 'SurveyResult',
-        component: SurveyResult
+        component: SurveyResultPage
     }
 ]
 

@@ -35,41 +35,49 @@ class SurveyController extends Controller
     public function saveQuestionsSurvey(Request $request)
     {
 
-        $email = json_decode($request->answers[0]);
+        // $email = json_decode($request->answers[0]);
         $validatedMail = false;
-
-        if(filter_var($email->answer, FILTER_VALIDATE_EMAIL)){
-            $validatedMail = true;
-            $answerUser = new AnswerUser();
-            $answerUser->token = Str::random(30);
-            $answerUser->save();
-    
-            foreach($request->answers as $one)
-            {
-                $one = json_decode($one);
-    
-                $answer = new Answer();
-                $answer->answer_user_id = $answerUser->id;
-                $answer->answer = $one->answer;
-                $answer->save();
-                
-                $answerQuestion = new AnswerQuestion();
-                $answerQuestion->answer_id = $answer->id;
-                $answerQuestion->question_id = $one->questionId;
-                $answerQuestion->save();
-            }
-            
-            return response()->json([   
-                'validatedMail' => $validatedMail,
-                'answerUser' => $answerUser,
-                'Message' => 'Nouveau sondage utilisateur créé !',
+        // $answerArr = [];
+        // foreach($request->answers as $one)
+        // {
+        //     $one = json_decode($one);
+        //     array_push($answerArr, $one);
+        // }
+        // $answerArr = json_decode($request->answers);
+        
+        // foreach($answerArr as $one){
+            $validator = $request->validate([
+                'answers.*.answer' => 'required|string',
             ]);
+        // }
+        if($validator){
+            return response()->json([
+                'status' => 'success',
+                'msg' => 'Ok',
+            ], 201);
         }
         else{
             return response()->json([
-                'validatedMail' => $validatedMail,
-            ]);
+                'status' => 'error',
+                'msg' => 'Error',
+            ], 422);
         }
+        return response()->json($request);
     }
+
+    // Nom: getSurveyResult
+    // Type:
+    // Parametres ou champs (data):
+    // Role:
+    // public function getSurveyResult($token)
+    // {
+    //     $answerUser = AnswerUser::where('token', $token)->first();
+    //     $answers = Answer::where('answer_user_id', $answerUser->id)->first();
+    //     // foreach($answers as $one){
+    //     //     $one['question_id'] = $one->questions()->attach($one->question_id);
+    //     // }
+    //     // $question = $answers->question();
+    //     return response()->json($answers, $question);
+    // }
 
 }
