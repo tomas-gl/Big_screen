@@ -1,18 +1,19 @@
 <template>
   <el-card class="box-card">
+    <template #header>
       <h2>Question {{ num_question }}/20</h2>
       <p>{{corps_question}}</p>
       <p>{{user_answer}}</p>
+    </template>
       <div class="options">
           <div v-if="type_question == 'A'" class="typeA">
-              <div v-for="possible_answer in possible_answers" :key="possible_answer">
-                  <label>{{possible_answer}}</label>
-                  <el-input type="radio"
-                  @change="getAnswer(id_question)"
-                  :value="possible_answer" 
-                  v-model="user_answer"
-                  class="option"/>
-              </div>
+                <el-radio-group v-model="user_answer">
+                    <el-radio :label="possible_answer" 
+                    size="large"
+                    v-for="possible_answer in possible_answers"
+                    :key="possible_answer">
+                    </el-radio>
+                </el-radio-group>
           </div>
           <div v-if="type_question == 'B'" class="typeB">
               <el-input type="text"
@@ -84,7 +85,7 @@ export default {
       background: rgba(255, 255, 255, 0.90);
       border-radius: 5px;
       color: black;
-      margin: 5em auto;
+      margin: 1em auto;
     }
     .typeA.option {
         padding: 1rem;
