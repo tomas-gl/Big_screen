@@ -45,7 +45,7 @@ export default {
         corps_question: this.question.question,
         type_question: this.question.type_question,
         possible_answers: this.question.possible_answers,
-        user_answer: '',
+        user_answer: [],
       }
     },
     methods:{

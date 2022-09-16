@@ -38,11 +38,11 @@ class SurveyController extends Controller
         $email = json_decode($request->answers[0]);
         $validatedMail = false;
 
-        // if(filter_var($email->answer, FILTER_VALIDATE_EMAIL)){
+        if(filter_var($email->answer, FILTER_VALIDATE_EMAIL)){
             $validatedMail = true;
-            // $answerUser = new AnswerUser();
-            // $answerUser->token = Str::random(30);
-            // $answerUser->save();
+            $answerUser = new AnswerUser();
+            $answerUser->token = Str::random(30);
+            $answerUser->save();
     
             foreach($request->answers as $one)
             {
@@ -59,21 +59,16 @@ class SurveyController extends Controller
                 $answerQuestion->save();
             }
             
-        //     return response()->json([   
-        //         'validatedMail' => $validatedMail,
-        //         'Message' => 'Nouveau sondage utilisateur créé !'
-        //     ]);
-        // }
-        // else{
+            return response()->json([   
+                'validatedMail' => $validatedMail,
+                'Message' => 'Nouveau sondage utilisateur créé !'
+            ]);
+        }
+        else{
             return response()->json([
                 'validatedMail' => $validatedMail,
-            ]
-            );
-        // }
-
-        //     $one = json_decode($request->answers[0]);
-        //     return response()->json($email);
-        // }
+            ]);
+        }
     }
 
 }

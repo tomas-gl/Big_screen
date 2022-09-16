@@ -3,7 +3,7 @@
       <HeaderUser />
       <form  @submit.prevent="saveSurvey" novalidate>
         <el-row>
-          <el-col :span="16" :offset="4" v-for="question in questions" :key="question.numQuestion">
+          <el-col :span="16" :offset="4" v-for="question in questions" :key="question.id">
             <SurveyCard :question="question" :answers="answers"/>
           </el-col>
           <el-col>
