@@ -2,17 +2,16 @@
   <el-card class="box-card">
       <h2>Question {{ num_question }}/20</h2>
       <p>{{corps_question}}</p>
-      <p>{{user_answer}}</p>
       <div class="options">
           <div v-if="type_question == 'A'" class="typeA">
-              <div v-for="possible_answer in possible_answers" :key="possible_answer">
-                  <label>{{possible_answer}}</label>
-                  <el-input type="radio"
-                  @change="getAnswer(id_question)"
-                  :value="possible_answer" 
-                  v-model="user_answer"
-                  class="option"/>
-              </div>
+            <el-radio-group v-model="user_answer">
+              <el-radio :label="possible_answer"
+                @change="getAnswer(id_question)"
+                size="large"
+                v-for="possible_answer in possible_answers"
+                :key="possible_answer">
+              </el-radio>
+            </el-radio-group>
           </div>
           <div v-if="type_question == 'B'" class="typeB">
               <el-input type="text"
@@ -23,6 +22,7 @@
               class="option"/>
           </div>
           <div v-if="type_question == 'C'" class="typeC">
+              <p>{{user_answer}}</p>
               <el-slider
               @change="getAnswer(id_question)"
               :step="1" 
@@ -45,7 +45,7 @@ export default {
         corps_question: this.question.question,
         type_question: this.question.type_question,
         possible_answers: this.question.possible_answers,
-        user_answer: [],
+        user_answer: this.user_answer,
       }
     },
     methods:{
@@ -54,7 +54,9 @@ export default {
           if(el['questionId'] == value){
             el['answer'] = this.user_answer;
           }
+          console.log(this.user_answer);
         });
+
       },
       answerCleaning(possible_answers) {
         let cleaned_answers = possible_answers.split(",")
@@ -64,33 +66,10 @@ export default {
             return answer
         })
         this.possible_answers = cleaned_answers
-      }
-    }, 
+      },
+    },
     mounted() {
         this.answerCleaning(this.possible_answers)
-        if(this.type_question == "A"){
-          this.answers.forEach(el => {
-            if(el['questionId'] == this.question.id){
-              el['answer'] = this.possible_answers[0];
-              this.user_answer = this.possible_answers[0];
-            }
-          });
-        }
-        else if(this.type_question == "B"){
-          this.answers.forEach(el => {
-            if(el['questionId'] == this.question.id){
-              el['answer'] = "";
-            }
-          });
-        }
-        else if(this.type_question == "C"){
-          this.answers.forEach(el => {
-            if(el['questionId'] == this.question.id){
-              el['answer'] = 1;
-              this.user_answer = 1;
-            }
-          });
-        }
     }
 }
 </script>
@@ -104,7 +83,7 @@ export default {
       background: rgba(255, 255, 255, 0.90);
       border-radius: 5px;
       color: black;
-      margin: 5em auto;
+      margin: 1em auto;
     }
     .typeA.option {
         padding: 1rem;

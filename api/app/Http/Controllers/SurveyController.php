@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Contracts\Validation\Validator;
+use Validator;
 use App\Models\Question;
 use App\Models\Survey;
 use App\Models\Answer;
@@ -34,35 +34,40 @@ class SurveyController extends Controller
     // Role:
     public function saveQuestionsSurvey(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'answers.*' => 'required',
+            'answers.1' => 'required|email',
+        ],[
+            'answers.*.required' => 'Veuillez renseigner tous les champs',
+            'answers.1.email' => 'Veuillez rentrer une adresse mail valide',
+        ]);
 
-        // $email = json_decode($request->answers[0]);
-        $validatedMail = false;
-        // $answerArr = [];
-        // foreach($request->answers as $one)
-        // {
-        //     $one = json_decode($one);
-        //     array_push($answerArr, $one);
-        // }
-        // $answerArr = json_decode($request->answers);
-        
-        // foreach($answerArr as $one){
-            $validator = $request->validate([
-                'answers.*.answer' => 'required|string',
-            ]);
-        // }
-        if($validator){
-            return response()->json([
-                'status' => 'success',
-                'msg' => 'Ok',
-            ], 201);
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->first());
         }
         else{
-            return response()->json([
-                'status' => 'error',
-                'msg' => 'Error',
-            ], 422);
+            $answerUser = new AnswerUser();
+            $answerUser->token = Str::random(30);
+            $answerUser->save();
+    
+            foreach($request->answers as $key => $value)
+            {
+                
+                $answer = new Answer();
+                $answer->answer_user_id = $answerUser->id;
+                $answer->answer = $value;
+                $answer->save();
+                
+                $answerQuestion = new AnswerQuestion();
+                $answerQuestion->answer_id = $answer->id;
+                $answerQuestion->question_id = $key;
+                $answerQuestion->save();
+            }
+            return response()->json([   
+                'answerUser' => $answerUser,
+                'Message' => 'Nouveau sondage utilisateur créé !',
+            ]);
         }
-        return response()->json($request);
     }
 
     // Nom: getSurveyResult

@@ -50,6 +50,7 @@ export default {
       return {
         questions: [],
         answers: [],
+        convertedAnswers: {},
         errors: [],
         successMessage: false,
         dialogTableVisible: '',
@@ -62,23 +63,56 @@ export default {
         await axios.get(url).then(response =>{
           console.log(response.data);
           this.questions = response.data;
+          // this.questions.forEach(element => {
+          //   this.answers["answer" + element.id] = "aba" + element.id;
+          // });
+          // console.log(this.answers);
+
+          //   for (let key of Object.keys(this.answers)) {
+          //       let prop = key;
+          //       let val = this.answers[key];
+
+          //       prop = "question id";
+          //       val = "valeur"
+
+          //       console.log(prop);
+          //       console.log(val);
+          //       // use val
+          //   }
+
           this.questions.forEach(element => {
-            this.answers.push({
-              'questionId': element.id,
-              'answer': ''
-            });
+            if(element.type_question == "C"){
+              this.answers.push({
+                'questionId': element.id,
+                'answer': 1
+              });
+            }
+            else{
+              this.answers.push({
+                'questionId': element.id,
+                'answer': ''
+              });
+            }
           });
+          // this.answers = Object.assign(this.answers, this.answers);
+          // let arrConverted = {}; 
+
+          // print object
         }).catch(error => console.log(error))
       },
 
       async saveSurvey(){
         this.errors = [];
-        console.log(this.answers);
-        // let formData = new FormData();
-        // this.answers.forEach(element => {
-        //   formData.append('answers[]', JSON.stringify(element));
-        // });
-        let formData = {answers : this.answers};
+        this.answers.forEach(element => {
+          this.convertedAnswers[element.questionId] = element.answer;
+        });
+        // console.log(this.answers);
+        // console.log(this.convertedAnswers);
+        // this.answers[0]['email'] = this.answers[0]['answer'];
+        // this.answers[0]['answer'] = "test";
+        // delete this.answers[0]['answer'];
+        // console.log(this.answers);
+        let formData = {answers : this.convertedAnswers};
         let url = 'http://127.0.0.1:8000/api/saveQuestionsSurvey';
         await axios.post(url, formData).then((response) =>{
             if(response.status == 200){
