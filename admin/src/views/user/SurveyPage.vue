@@ -8,7 +8,12 @@
           </el-col>
           <el-col>
             <span v-if="errors.length">
-              <el-alert title="{{error}}" type="error"/>
+              <span v-for="(error, index) in errors" :key="index">
+                <el-alert v-bind:title=error type="error" show-icon />
+              </span>
+            </span>
+            <span v-if="successMessage">
+              Success box
             </span>
             <el-button type="primary" native-type="submit">Primary</el-button>
           </el-col>
@@ -29,6 +34,7 @@ export default {
         questions: [],
         answers: [],
         errors: [],
+        successMessage: false,
       }
     },
     methods: {
@@ -48,6 +54,7 @@ export default {
       },
 
       async saveSurvey(){
+        this.errors = [];
         console.log(this.answers);
         let formData = new FormData();
         this.answers.forEach(element => {
@@ -56,7 +63,14 @@ export default {
         let url = 'http://127.0.0.1:8000/api/saveQuestionsSurvey';
         await axios.post(url, formData).then((response) =>{
             if(response.status == 200){
-                console.log(response);
+                console.log(response.data);
+                if(response.data.validatedMail){
+                  this.successMessage = true;
+                  console.log(this.errors);
+                }
+                else{
+                  this.errors.push("Format d'addresse mail incorrect");
+                }
             }
           });
       },

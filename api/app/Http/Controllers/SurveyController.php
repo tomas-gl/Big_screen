@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Contracts\Validation\Validator;
 use App\Models\Question;
 use App\Models\Survey;
 use App\Models\Answer;
@@ -33,29 +34,46 @@ class SurveyController extends Controller
     // Role:
     public function saveQuestionsSurvey(Request $request)
     {
-        $answerUser = new AnswerUser();
-        $answerUser->token = Str::random(30);
-        $answerUser->save();
 
-        foreach($request->answers as $one)
-        {
-            $one = json_decode($one);
+        $email = json_decode($request->answers[0]);
+        $validatedMail = false;
 
-            $answer = new Answer();
-            $answer->answer_user_id = $answerUser->id;
-            $answer->answer = $one->answer;
-            $answer->save();
+        if(filter_var($email->answer, FILTER_VALIDATE_EMAIL)){
+            $validatedMail = true;
+            // $answerUser = new AnswerUser();
+            // $answerUser->token = Str::random(30);
+            // $answerUser->save();
+    
+            // foreach($request->answers as $one)
+            // {
+            //     $one = json_decode($one);
+    
+            //     $answer = new Answer();
+            //     $answer->answer_user_id = $answerUser->id;
+            //     $answer->answer = $one->answer;
+            //     $answer->save();
+                
+            //     $answerQuestion = new AnswerQuestion();
+            //     $answerQuestion->answer_id = $answer->id;
+            //     $answerQuestion->question_id = $one->questionId;
+            //     $answerQuestion->save();
+            // }
             
-            $answerQuestion = new AnswerQuestion();
-            $answerQuestion->answer_id = $answer->id;
-            $answerQuestion->question_id = $one->questionId;
-            $answerQuestion->save();
+            return response()->json([   
+                'validatedMail' => $validatedMail,
+                'Message' => 'Nouveau sondage utilisateur créé !'
+            ]);
         }
-        
-        return response()->json([
-            'message' => 'Nouveau sondage utilisateur créé !',
-            'code' => 200
-        ]);
+        else{
+            return response()->json([
+                'validatedMail' => $validatedMail,
+            ]
+            );
+        }
+
+        //     $one = json_decode($request->answers[0]);
+        //     return response()->json($email);
+        // }
     }
 
 }
