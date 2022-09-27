@@ -5,7 +5,7 @@
             <el-col :span="16" :offset="4">
                 <el-card class="box-card">
                     <h2>Question {{answer.num_question}}/20</h2>
-                    <p>{{answer.question}}</p>
+                    <p>{{answer.question}} :</p>
                     <div class="options">
                         <p>{{answer.answer}}</p>
                     </div>
