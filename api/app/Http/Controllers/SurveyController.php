@@ -81,8 +81,9 @@ class SurveyController extends Controller
         $answers = Answer::where('answer_user_id', $answerUser->id)->get();
         foreach($answers as $one){
             $one['question'] = $one->questions()->pluck('question')->first();
+            $one['num_question'] = $one->questions()->pluck('num_question')->first();
         }
-        return response()->json([$answers]);
+        return response()->json($answers);
     }
 
 }
