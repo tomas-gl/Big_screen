@@ -27,7 +27,7 @@
                     <p>Si vous désirez consulter vos réponse ultérieurement, vous pouvez consultez
                     cette adresse: 
                     <router-link :to="{ name:'SurveyResult', params: { token: answerUserToken} }">
-                      test
+                      http:/localhost:8080/surveyresult/{{answerUserToken}}
                     </router-link>
                     </p>
                   </el-descriptions-item>

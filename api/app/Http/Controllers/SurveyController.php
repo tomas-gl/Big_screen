@@ -61,11 +61,8 @@ class SurveyController extends Controller
                 $answer->answer_user_id = $answerUser->id;
                 $answer->answer = $value;
                 $answer->save();
-                
-                $answerQuestion = new AnswerQuestion();
-                $answerQuestion->answer_id = $answer->id;
-                $answerQuestion->question_id = $key;
-                $answerQuestion->save();
+
+                $answer->questions()->attach($key);
             }
             return response()->json([   
                 'answerUser' => $answerUser,
@@ -78,15 +75,14 @@ class SurveyController extends Controller
     // Type:
     // Parametres ou champs (data):
     // Role:
-    // public function getSurveyResult($token)
-    // {
-    //     $answerUser = AnswerUser::where('token', $token)->first();
-    //     $answers = Answer::where('answer_user_id', $answerUser->id)->first();
-    //     // foreach($answers as $one){
-    //     //     $one['question_id'] = $one->questions()->attach($one->question_id);
-    //     // }
-    //     // $question = $answers->question();
-    //     return response()->json($answers, $question);
-    // }
+    public function getSurveyResult($token)
+    {
+        $answerUser = AnswerUser::where('token', $token)->first();
+        $answers = Answer::where('answer_user_id', $answerUser->id)->get();
+        foreach($answers as $one){
+            $one['question'] = $one->questions()->pluck('question')->first();
+        }
+        return response()->json([$answers]);
+    }
 
 }

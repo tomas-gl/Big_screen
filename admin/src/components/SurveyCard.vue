@@ -55,7 +55,6 @@ export default {
             el['answer'] = this.user_answer;
           }
         });
-
       },
       answerCleaning(possible_answers) {
         let cleaned_answers = possible_answers.split(",")
