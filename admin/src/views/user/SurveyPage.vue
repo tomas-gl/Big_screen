@@ -2,15 +2,40 @@
     <div>
       <HeaderUser />
       <form  @submit.prevent="saveSurvey" novalidate>
-        <el-row>
-          <el-col :span="16" :offset="4" v-for="question in questions" :key="question.numQuestion">
+        <el-row v-for="question in questions" :key="question.id">
+          <el-col :span="16" :offset="4">
             <SurveyCard :question="question" :answers="answers"/>
           </el-col>
-          <el-col>
+        </el-row>
+
+        <el-row>
+          <el-col :span="16" :offset="4">
+
             <span v-if="errors.length">
-              <el-alert title="{{error}}" type="error"/>
+              <span v-for="(error, index) in errors" :key="index">
+                <el-alert v-bind:title=error type="error" show-icon class="errorMessage"/>
+              </span>
             </span>
-            <el-button type="primary" native-type="submit">Primary</el-button>
+
+            <span v-if="successMessage">
+              <el-dialog v-model="dialogTableVisible" title="Sondage validé">
+                <el-descriptions>
+                  <el-descriptions-item>
+                    <p>Toute l’équipe de Bigscreen vous remercie pour votre engagement.</p>
+                    <p>Grâce à votre investissement, nous vous préparons une application toujours plus
+                    facile à utiliser, seul ou en famille.</p>
+                    <p>Si vous désirez consulter vos réponse ultérieurement, vous pouvez consultez
+                    cette adresse: 
+                    <router-link :to="{ name:'SurveyResult', params: { token: answerUserToken} }">
+                      http:/localhost:8080/surveyresult/{{answerUserToken}}
+                    </router-link>
+                    </p>
+                  </el-descriptions-item>
+                </el-descriptions>
+              </el-dialog>
+            </span>
+
+            <el-button type="primary" native-type="submit" size="large">Finaliser</el-button>
           </el-col>
         </el-row>
       </form>
@@ -28,7 +53,11 @@ export default {
       return {
         questions: [],
         answers: [],
+        convertedAnswers: {},
         errors: [],
+        successMessage: false,
+        dialogTableVisible: '',
+        answerUserToken: '',
       }
     },
     methods: {
@@ -38,25 +67,42 @@ export default {
           console.log(response.data);
           this.questions = response.data;
           this.questions.forEach(element => {
-            this.answers.push({
-              'questionId': element.id,
-              'answer': ''
-            });
+            if(element.type_question == "C"){
+              this.answers.push({
+                'questionId': element.id,
+                'answer': 1
+              });
+            }
+            else{
+              this.answers.push({
+                'questionId': element.id,
+                'answer': ''
+              });
+            }
           });
-          console.log(this.answers);
         }).catch(error => console.log(error))
       },
 
       async saveSurvey(){
-        console.log(this.answers);
-        let formData = new FormData();
+        this.errors = [];
         this.answers.forEach(element => {
-          formData.append('answers[]', JSON.stringify(element));
+          this.convertedAnswers[element.questionId] = element.answer;
         });
+        console.log(this.convertedAnswers);
+        let formData = {answers : this.convertedAnswers};
         let url = 'http://127.0.0.1:8000/api/saveQuestionsSurvey';
         await axios.post(url, formData).then((response) =>{
             if(response.status == 200){
-                console.log(response);
+                console.log(response.data);
+                if(response.data.validatorErrors){
+                  this.errors.push(response.data.validatorErrors);
+                  console.log(this.errors);
+                }
+                else{
+                  this.successMessage = true;
+                  this.dialogTableVisible = true;
+                  this.answerUserToken = response.data.answerUser['token'];
+                }
             }
           });
       },
@@ -69,4 +115,21 @@ export default {
 </script>
 
 <style>
+.el-button{
+  margin: 1rem 0rem 15rem 0rem;
+}
+.el-alert{
+  margin: 1rem 0 !important;
+  padding: 2rem !important;
+  justify-content: center;
+}
+
+.el-alert__title{
+  font-size: 1rem !important;
+}
+
+.el-icon{
+  font-size: 28px !important;
+  width: 28px !important;
+}
 </style>

@@ -12,6 +12,11 @@ const routes = [
         component: SurveyPage
     },
     {
+        path: '/surveyresult/:token?',
+        name: 'SurveyResult',
+        component: SurveyResultPage
+    },
+    {
         path: '/administration',
         name: 'LoginAdmin',
         component: LoginAdmin

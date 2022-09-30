@@ -16,4 +16,5 @@ class Question extends Model
 		'type_question',
 		'possible_answers',
 	];
+	
 }
