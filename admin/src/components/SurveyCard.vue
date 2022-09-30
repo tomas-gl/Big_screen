@@ -1,6 +1,5 @@
 <template>
   <el-card class="box-card">
-    <template #header>
       <h2>Question {{ num_question }}/20</h2>
       <p>{{corps_question}}</p>
       <div class="options">

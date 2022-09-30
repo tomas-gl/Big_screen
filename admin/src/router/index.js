@@ -4,6 +4,7 @@ import HomeAdmin from '../views/admin/HomeAdmin.vue'
 import LoginAdmin from '../views/admin/LoginAdmin.vue'
 import SurveyAdmin from '../views/admin/SurveyAdmin.vue'
 import SurveyPage from '../views/user/SurveyPage.vue'
+import SurveyResultPage from '../views/user/SurveyResultPage.vue'
 
 const routes = [
     {
