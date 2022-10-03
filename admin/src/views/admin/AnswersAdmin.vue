@@ -1,10 +1,13 @@
 <template>
-  
+  <h1>Answers Admin</h1>
+  <SideNavBar />
 </template>
 
 <script>
-export default {
+import SideNavBar from '@/components/SideNavBar.vue';
 
+export default {
+    components: { SideNavBar }
 }
 </script>
 
