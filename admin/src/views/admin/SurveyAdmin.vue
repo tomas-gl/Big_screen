@@ -2,6 +2,7 @@
   <h1>Survey Admin</h1>
   <SideNavBar />
   <router-view/>
+
 </template>
 
 <script>

@@ -1,10 +1,14 @@
 <template>
     <SideNavBar />
+    <div>
+     <h1>Home Admin</h1>
+    </div>
     <div class="container"><canvas></canvas></div>
     <div class="container"><canvas></canvas></div>
     <div class="container"><canvas></canvas></div>
     <div class="container"><canvas></canvas></div>
     <router-view />
+
 </template>
 
 <script>

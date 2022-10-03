@@ -1,6 +1,7 @@
 <template>
   <h1>Answers Admin</h1>
   <SideNavBar />
+
 </template>
 
 <script>
