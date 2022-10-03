@@ -19,6 +19,7 @@
         </span>
 
         <el-button type="primary" @click="login" size="large">S'identifier</el-button>
+        <!-- <el-button type="success" @click="home" size="large">Home</el-button> -->
 
       </el-col>
     </el-row>
@@ -39,24 +40,28 @@ export default {
       }
     },
     methods:{
-          
       // Login a user
       async login(){
+        console.log(this.$store.state);
           this.errors = [];
           let formData = new FormData();
           formData.append('email', this.email);
           formData.append('password', this.password);
           let url = 'http://127.0.0.1:8000/api/login';
           await axios.post(url, formData).then(response =>{
-              // this.$router.push('administration/home')
-              // localStorage.setItem('loggedUser', response.data);
-              console.log(response.data.token);
+              this.$store.commit('initialiseStore', response.data.auth_user.name);
+              // this.$router.go('/administration/home');
+              console.log(localStorage.getItem('loggedAdmin'));
+              // if(localStorage.getItem('loggedAdmin') == "test"){
+                this.$router.push('/administration/home');
+              // }
+              console.log(response.data);
           }).catch(error =>{
               this.errors.push(error.response.data.message);
               console.log(error.response);
           });
         },
-      },
+    }
 }
 </script>
 

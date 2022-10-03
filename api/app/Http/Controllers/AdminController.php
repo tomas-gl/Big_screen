@@ -23,15 +23,8 @@ class AdminController extends Controller
     // Role:
     public function login(Request $request){
         if(Auth::attempt($request->only('email', 'password'))){
-            // session(['loggedUser' => true]);
             return response()->json([
                 'auth_user' => Auth::user(),
-                // session('loggedUser'),
-                // $request->session()->put('loggedIn', "test"),
-                // $loggedUser,
-                // session()->put('loggedIn', Auth::user()),
-                // session()->save(),
-                // session()->get('loggedIn'),
                  200
                 ]);
         }
@@ -40,17 +33,5 @@ class AdminController extends Controller
             'email' => ['L\'adresse mail ou le mot de passe sont incorrects']
         ]);
     }
-
-    // public function isLoggedIn(){
-    //     //         dd(session('loggedUser'));
-    //     // return view('welcome');
-    //     // $session = Session::get('loggedUser');
-    //     // if(isset($session)){
-    //         return response()->json([
-    //             session('loggedUser'),
-    //             "test"
-    //             ]);
-    //     // }
-    // }
 
 }
