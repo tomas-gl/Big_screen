@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SurveyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('login',[App\Http\Controllers\AdminController::class, 'login']);
+Route::post('login',[AdminController::class, 'login']);
 
-Route::get('getQuestionsSurvey',[App\Http\Controllers\SurveyController::class, 'getQuestionsSurvey']);
+Route::get('isLoggedIn',[AdminController::class, 'isLoggedIn']);
 
-Route::post('saveQuestionsSurvey',[App\Http\Controllers\SurveyController::class, 'saveQuestionsSurvey']);
+Route::get('getQuestionsSurvey',[SurveyController::class, 'getQuestionsSurvey']);
 
-Route::get('getSurveyResult/{token}',[App\Http\Controllers\SurveyController::class, 'getSurveyResult']);
+Route::post('saveQuestionsSurvey',[SurveyController::class, 'saveQuestionsSurvey']);
+
+Route::get('getSurveyResult/{token}',[SurveyController::class, 'getSurveyResult']);

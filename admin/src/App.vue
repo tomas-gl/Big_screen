@@ -5,9 +5,26 @@
 </template>
 
 <script>
+  // import axios from 'axios';
 
 export default {
   name: 'App',
+  methods:{
+    
+    async isLoggedIn(){
+      // localStorage.clear();
+          console.log(localStorage.getItem('loggedUser'));
+          // let url = 'http://127.0.0.1:8000/api/isLoggedIn';
+          // await axios.get(url).then(response =>{
+          //     console.log(response.data);
+          // }).catch(error =>{
+          //     console.log(error.response);
+          // });
+        }
+  },
+  mounted() {
+    this.isLoggedIn();
+  }
 }
 </script>
 

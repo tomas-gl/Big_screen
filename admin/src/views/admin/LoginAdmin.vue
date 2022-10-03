@@ -48,15 +48,15 @@ export default {
           formData.append('password', this.password);
           let url = 'http://127.0.0.1:8000/api/login';
           await axios.post(url, formData).then(response =>{
-              this.$router.push('administration/home')
-              console.log(response.data);
+              // this.$router.push('administration/home')
+              // localStorage.setItem('loggedUser', response.data);
+              console.log(response.data.token);
           }).catch(error =>{
               this.errors.push(error.response.data.message);
               console.log(error.response);
           });
-        }
+        },
       },
-
 }
 </script>
 
