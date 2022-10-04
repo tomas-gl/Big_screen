@@ -1,0 +1,18 @@
+body{
+  margin: 0;
+  background-color: rgb(4 4 49);
+}
+
+.box-card {
+    box-shadow: 0 15px 30px 1px grey;
+    background-color: rgba(35 38 47 / 70%) !important;
+    border-radius: 5px;
+    color: #ffffff !important;
+    margin: 1.5em auto;
+  }
+
+.num_question {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}

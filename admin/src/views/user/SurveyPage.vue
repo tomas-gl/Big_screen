@@ -2,14 +2,14 @@
     <div>
       <HeaderUser />
       <form  @submit.prevent="saveSurvey" novalidate>
-        <el-row v-for="question in questions" :key="question.id">
-          <el-col :span="16" :offset="4">
+        <el-row v-for="question in questions" :key="question.id" justify="center">
+          <el-col :xs="20" :sm="18" :lg="16">
             <SurveyCard :question="question" :answers="answers"/>
           </el-col>
         </el-row>
 
         <el-row>
-          <el-col :span="16" :offset="4">
+          <el-col :span="12" :offset="6">
 
             <span v-if="errors.length">
               <span v-for="(error, index) in errors" :key="index">
@@ -34,8 +34,9 @@
                 </el-descriptions>
               </el-dialog>
             </span>
-
-            <el-button type="primary" native-type="submit" size="large">Finaliser</el-button>
+            <el-button type="primary" native-type="submit" size="large" class="send">
+              Finaliser <el-icon class="send_icon"><Promotion /></el-icon>
+            </el-button>
           </el-col>
         </el-row>
       </form>
@@ -45,10 +46,11 @@
 <script>
 import HeaderUser from '@/components/HeaderUser.vue';
 import SurveyCard from '@/components/SurveyCard.vue';
+import Promotion from '@element-plus/icons-vue'
 import axios from 'axios';
 
 export default {
-    components: { HeaderUser, SurveyCard },
+    components: { HeaderUser, SurveyCard, Promotion },
     data() {
       return {
         questions: [],
@@ -115,8 +117,19 @@ export default {
 </script>
 
 <style>
-.el-button{
+form{
   margin: 1rem 0rem 15rem 0rem;
+}
+.send{
+  font-size: 1.25rem !important;
+  padding: 1.5rem 2rem !important;
+}
+.send_icon{
+    margin: 0rem 0rem 0rem 1rem !important;
+    /* transform: rotate(45deg); */
+}
+.el-button{
+  transition: 0.5s ease !important;
 }
 .el-alert{
   margin: 1rem 0 !important;

@@ -1,7 +1,9 @@
 <template>
-  <h1>Survey Admin</h1>
-  <SideNavBar />
-  <router-view/>
+  <div>
+    <h1>Survey Admin</h1>
+    <SideNavBar />
+    <router-view/>
+  </div>
 
 </template>
 

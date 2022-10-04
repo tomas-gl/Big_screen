@@ -19,7 +19,6 @@
         </span>
 
         <el-button type="primary" @click="login" size="large">S'identifier</el-button>
-        <!-- <el-button type="success" @click="home" size="large">Home</el-button> -->
 
       </el-col>
     </el-row>

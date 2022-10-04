@@ -4,8 +4,8 @@
         <el-row v-for="answer in answers" :key="answer.id">
             <el-col :span="16" :offset="4">
                 <el-card class="box-card">
-                    <h2>Question {{answer.num_question}}/20</h2>
-                    <p>{{answer.question}} :</p>
+                    <span class="num_question">Question {{answer.num_question}}/20</span>
+                    <p>{{answer.question}}</p>
                     <div class="options">
                         <p>{{answer.answer}}</p>
                     </div>

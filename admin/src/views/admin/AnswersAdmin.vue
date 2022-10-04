@@ -1,6 +1,8 @@
 <template>
-  <h1>Answers Admin</h1>
-  <SideNavBar />
+    <div>
+      <h1>Answers Admin</h1>
+      <SideNavBar />
+    </div>
 
 </template>
 

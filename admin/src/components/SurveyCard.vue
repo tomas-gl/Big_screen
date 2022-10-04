@@ -1,6 +1,6 @@
 <template>
   <el-card class="box-card">
-      <h2>Question {{ num_question }}/20</h2>
+      <span class="num_question">Question {{ num_question }}/20</span>
       <p>{{corps_question}}</p>
       <div class="options">
           <div v-if="type_question == 'A'" class="typeA">
@@ -73,22 +73,15 @@ export default {
 </script>
 
 <style>
-    h2 {
-      text-align: center;
+    .el-radio__label {
+      color: #ffffff80;
     }
-    .box-card {
-      box-shadow: 0 15px 30px 1px grey;
-      background: rgba(255, 255, 255, 0.90);
-      border-radius: 5px;
-      color: black;
-      margin: 1em auto;
+    .typeB{
+      width: 80%;
+      margin: auto;
     }
-    .typeA.option {
-        padding: 1rem;
-        display: block;
-        background-color: #271c36;
-        margin-bottom: 0.5rem;
-        border-radius: 0.5rem;
-        cursor: pointer;
+    .typeC{
+      width: 70%;
+      margin: auto;
     }
 </style>
