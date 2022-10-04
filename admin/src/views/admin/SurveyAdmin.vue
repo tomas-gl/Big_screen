@@ -1,11 +1,15 @@
 <template>
-    <div>
-  </div>
+  <h1>Survey Admin</h1>
+  <SideNavBar />
+  <router-view/>
+
 </template>
 
 <script>
-export default {
+import SideNavBar from '@/components/SideNavBar.vue';
 
+export default {
+    components: { SideNavBar }
 }
 </script>
 

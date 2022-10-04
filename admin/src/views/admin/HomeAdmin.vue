@@ -1,22 +1,35 @@
 <template>
   <div>
+    <SideNavBar />
+    <div>
      <h1>Home Admin</h1>
+    </div>
+    <div class="container"><canvas></canvas></div>
+    <div class="container"><canvas></canvas></div>
+    <div class="container"><canvas></canvas></div>
+    <div class="container"><canvas></canvas></div>
+    <router-view />
   </div>
 
 </template>
 
 <script>
+import SideNavBar from '@/components/SideNavBar.vue';
 
 export default {
-  data(){
-    return{
-      datas:{},
-    }
-  },
-  methods:{
-   
-  },
+    components: { SideNavBar },
+    data() {
+        return {
+            // data for charts
 
+        }
+    },
+    methods: {
+
+    },
+    mounted() {
+
+    }
 }
 </script>
 
