@@ -6,7 +6,6 @@
 </template>
 
 <script>
-// import axios from 'axios';
 
 export default {
   data(){
@@ -15,9 +14,9 @@ export default {
     }
   },
   methods:{
+   
   },
-  mounted() {
-  }
+
 }
 </script>
 

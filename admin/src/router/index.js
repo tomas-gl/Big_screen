@@ -5,20 +5,8 @@ import LoginAdmin from '../views/admin/LoginAdmin.vue'
 import SurveyAdmin from '../views/admin/SurveyAdmin.vue'
 import SurveyPage from '../views/user/SurveyPage.vue'
 import SurveyResultPage from '../views/user/SurveyResultPage.vue'
-import store from '../store';
-
-
-store.subscribe( (state) => {
-    localStorage.setItem('loggedAdmin',  JSON.stringify(state));
-	console.log(localStorage.getItem('loggedAdmin'));
-    // return state
-});
 
 // localStorage.clear();
-// localStorage.setItem('loggedAdmin', "");
-// const loggedAdmin = localStorage.getItem('loggedAdmin');
-console.log(localStorage.getItem('loggedAdmin'));
-console.log(store.state.loggedAdmin);
 
 const routes = [
     {

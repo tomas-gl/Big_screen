@@ -42,19 +42,14 @@ export default {
     methods:{
       // Login a user
       async login(){
-        console.log(this.$store.state);
           this.errors = [];
           let formData = new FormData();
           formData.append('email', this.email);
           formData.append('password', this.password);
           let url = 'http://127.0.0.1:8000/api/login';
           await axios.post(url, formData).then(response =>{
-              this.$store.commit('initialiseStore', response.data.auth_user.name);
-              // this.$router.go('/administration/home');
-              console.log(localStorage.getItem('loggedAdmin'));
-              // if(localStorage.getItem('loggedAdmin') == "test"){
-                this.$router.push('/administration/home');
-              // }
+              this.$store.commit('addAdmin', response.data.auth_user);
+              this.$router.push('/administration/home');
               console.log(response.data);
           }).catch(error =>{
               this.errors.push(error.response.data.message);
