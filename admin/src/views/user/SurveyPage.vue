@@ -1,7 +1,7 @@
 <template>
     <div>
       <HeaderUser />
-      <form  @submit.prevent="saveSurvey" novalidate>
+      <form  @submit.prevent="saveSurvey" novalidate class="form">
         <el-row v-for="question in questions" :key="question.id" justify="center">
           <el-col :xs="20" :sm="18" :lg="16">
             <SurveyCard :question="question" :answers="answers"/>
@@ -117,7 +117,7 @@ export default {
 </script>
 
 <style>
-form{
+.form{
   margin: 1rem 0rem 15rem 0rem;
 }
 .send{
