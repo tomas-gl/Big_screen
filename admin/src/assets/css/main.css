@@ -23,3 +23,10 @@ body{
   border-style: dashed;
   padding: 1rem;
 }
+
+.title-page{
+  display: block;
+  margin: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+}

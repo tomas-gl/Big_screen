@@ -41,14 +41,26 @@ class AdminController extends Controller
     public function getSurveyDatas() 
     {
         $answers = Answer::get();
+        $answerUser = AnswerUser::get();
         $questions = Question::get();
         foreach($answers as $one){
             $one['question'] = $one->questions()->pluck('question')->first();
             $one['num_question'] = $one->questions()->pluck('num_question')->first();
         }
+        foreach($answerUser as $one){
+            $answersByUser[] = Answer::where('answer_user_id', $one->id)->get();
+        }
+        foreach($answersByUser as $answerByUser){
+            foreach($answerByUser as $one){
+                $one['question'] = $one->questions()->pluck('question')->first();
+                $one['num_question'] = $one->questions()->pluck('num_question')->first();
+            }
+        }
+
         return response()->json([
             'answers' => $answers,
-            'questions' => $questions
+            'questions' => $questions,
+            'answersByUser' => $answersByUser,
         ]);
     }
 

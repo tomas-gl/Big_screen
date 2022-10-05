@@ -1,9 +1,16 @@
 <template>
   <div>
     <SideNavBar />
-    <el-row>
-      <el-col :span="24">
-          <h1>Answers Admin</h1>
+    <el-row justify="center">
+      <el-col :xs="20" :sm="18" :lg="16">
+        <span class="title-page">Réponses</span>
+        <div v-for="answers in answersByUser" :key="answers.id">
+          <el-table :data="answers" setScrollLeft="left" stripe="true" border="true">
+            <el-table-column prop="num_question" label="N° question" width="120"/>
+            <el-table-column prop="question" label="Corps" min-width="200"/>
+            <el-table-column prop="answer" label="Réponse" width="200"/>
+          </el-table>
+        </div>
       </el-col>
     </el-row>
   </div>
@@ -11,13 +18,41 @@
 
 <script>
 import SideNavBar from '@/components/SideNavBar.vue';
+import axios from 'axios';
 
 export default {
-    components: { SideNavBar }
+    components: { SideNavBar },
+    data(){
+      return{
+        answersByUser: [
+        ],
+      }
+    },
+     methods:{
+      async getSurveyDatas(){
+              let url = 'http://127.0.0.1:8000/api/getSurveyDatas'
+              await axios.get(url).then(response =>{
+                console.log(response.data);
+                  this.answersByUser = response.data.answersByUser;
+                  // this.answers.forEach(element => {
+                  //   console.log(element.answer_user_id)
+                  // });
+                  // this.questions.forEach(element => {
+                  //   Object.assign({}, element);
+                  // });
+                  console.log(this.answersByUser);
+              }).catch(error =>{
+                  console.log(error);
+              });
+          },
+    },
+    mounted() {
+       this.getSurveyDatas();
+    }
 }
 </script>
 
-<style>
+<style scoped>
 .el-row{
   margin-left: 200px;
 }
@@ -25,5 +60,8 @@ export default {
   .el-row{
     margin-left: 0px;
   }
+}
+.el-table{
+  margin:2.5rem 0rem 5rem 0rem;
 }
 </style>

@@ -4,9 +4,9 @@
     <el-row justify="center">
       <el-col :xs="20" :sm="18" :lg="16">
         <span class="title-page">Questionnaire</span>
-        <el-table :data="questions" style="width: 100%">
+        <el-table :data="questions" style="width: 100%" setScrollLeft="left" stripe="stripe" border="true">
           <el-table-column prop="num_question" label="N° question" width="120"/>
-          <el-table-column prop="question" label="Corps"/>
+          <el-table-column prop="question" label="Corps" min-width="200"/>
           <el-table-column prop="type_question" label="Type" width="100"/>
         </el-table>
       </el-col>
@@ -31,9 +31,6 @@ export default {
               let url = 'http://127.0.0.1:8000/api/getSurveyDatas'
               await axios.get(url).then(response =>{
                   this.questions = response.data.questions;
-                  this.questions.forEach(element => {
-                    Object.assign({}, element);
-                  });
                   console.log(this.questions);
               }).catch(error =>{
                   console.log(error);
@@ -46,7 +43,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .el-row{
   margin-left: 200px;
 }
@@ -54,10 +51,5 @@ export default {
   .el-row{
     margin-left: 0px;
   }
-}
-.title-page{
-    display: block;
-    margin: 1rem;
-    font-size: 2rem;
 }
 </style>
