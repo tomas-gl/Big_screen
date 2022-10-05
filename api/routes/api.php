@@ -16,12 +16,14 @@ use App\Http\Controllers\SurveyController;
 |
 */
 
-Route::post('login',[AdminController::class, 'login']);
+Route::post('login', [AdminController::class, 'login']);
 
-Route::get('isLoggedIn',[AdminController::class, 'isLoggedIn']);
+Route::get('isLoggedIn', [AdminController::class, 'isLoggedIn']);
 
-Route::get('getQuestionsSurvey',[SurveyController::class, 'getQuestionsSurvey']);
+Route::get('getSurveyDatas', [App\Http\Controllers\AdminController::class, 'getSurveyDatas']);
 
-Route::post('saveQuestionsSurvey',[SurveyController::class, 'saveQuestionsSurvey']);
+Route::get('getQuestionsSurvey', [SurveyController::class, 'getQuestionsSurvey']);
 
-Route::get('getSurveyResult/{token}',[SurveyController::class, 'getSurveyResult']);
+Route::post('saveQuestionsSurvey', [SurveyController::class, 'saveQuestionsSurvey']);
+
+Route::get('getSurveyResult/{token}', [SurveyController::class, 'getSurveyResult']);

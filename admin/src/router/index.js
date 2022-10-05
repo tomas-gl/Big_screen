@@ -28,7 +28,7 @@ const routes = [
         path: '/administration/home',
         name: 'HomeAdmin',
         component: HomeAdmin,
-        meta:{
+        meta: {
             needsAuth: true,
         }
     },
@@ -36,7 +36,7 @@ const routes = [
         path: '/administration/survey',
         name: 'SurveyAdmin',
         component: SurveyAdmin,
-        meta:{
+        meta: {
             needsAuth: true,
         }
     },
@@ -44,7 +44,7 @@ const routes = [
         path: '/administration/answers',
         name: 'AnswersAdmin',
         component: AnswersAdmin,
-        meta:{
+        meta: {
             needsAuth: true,
         }
     }
@@ -55,16 +55,16 @@ const router = createRouter({
     routes
 })
 
-router.beforeEach((to, from, next) =>{
-    if(to.meta.needsAuth){
-        if(localStorage.getItem('loggedAdmin')){
+router.beforeEach((to, from, next) => {
+    if (to.meta.needsAuth) {
+        if (localStorage.getItem('loggedAdmin')) {
             next();
         }
-        else{
+        else {
             next("/administration");
         }
     }
-    else{
+    else {
         next();
     }
 })
