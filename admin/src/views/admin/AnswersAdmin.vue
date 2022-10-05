@@ -34,12 +34,6 @@ export default {
               await axios.get(url).then(response =>{
                 console.log(response.data);
                   this.answersByUser = response.data.answersByUser;
-                  // this.answers.forEach(element => {
-                  //   console.log(element.answer_user_id)
-                  // });
-                  // this.questions.forEach(element => {
-                  //   Object.assign({}, element);
-                  // });
                   console.log(this.answersByUser);
               }).catch(error =>{
                   console.log(error);

@@ -4,12 +4,12 @@ body{
 }
 
 .box-card {
-    box-shadow: 0 15px 30px 1px grey;
-    background-color: rgba(35 38 47 / 70%) !important;
-    border-radius: 5px;
-    color: #ffffff !important;
-    margin: 1.5em auto;
-  }
+  box-shadow: 0 15px 30px 1px #8080805e !important;
+  background-color: rgba(35 38 47 / 70%) !important;
+  border-radius: 5px;
+  color: #ffffff !important;
+  margin: 1.5em auto;
+}
 
 .corps_question {
   text-align: center;
@@ -26,7 +26,15 @@ body{
 
 .title-page{
   display: block;
-  margin: 1rem;
+  margin: 2rem;
   font-size: 2rem;
   font-weight: bold;
+}
+
+.el-form-item__label{
+  color: #ffffff !important;
+}
+
+.cell{
+  word-break: normal !important;
 }

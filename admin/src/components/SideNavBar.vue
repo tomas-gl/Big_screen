@@ -2,14 +2,14 @@
     <div>
         <el-menu :router="true" class="el-menu-vertical-demo hidden-xs-only" mode="vertical" text-color="#fff">
             <div class="logo"><img :src="logo"></div>
-            <el-menu-item index="home"><el-icon><HomeFilled /></el-icon>Accueil</el-menu-item>
+            <el-menu-item index="home"><el-icon><PieChart /></el-icon>Accueil</el-menu-item>
             <el-menu-item index="survey"><el-icon><Document /></el-icon>Sondage</el-menu-item>
             <el-menu-item index="answers"><el-icon><List /></el-icon>Réponses</el-menu-item>
         </el-menu>
         <el-menu :router="true" class="el-menu-horizontal-demo" mode="horizontal" text-color="#fff" background-color="#11101d">
             <el-sub-menu index="administration">
                 <template #title>Bigscreen</template>
-                <el-menu-item index="home"><el-icon><HomeFilled /></el-icon>Accueil</el-menu-item>
+                <el-menu-item index="home"><el-icon><PieChart /></el-icon>Accueil</el-menu-item>
                 <el-menu-item index="survey"><el-icon><Document /></el-icon>Sondage</el-menu-item>
                 <el-menu-item index="answers"><el-icon><List /></el-icon>Réponses</el-menu-item>
             </el-sub-menu>
