@@ -4,7 +4,7 @@
     <el-row justify="center">
       <el-col :xs="20" :sm="18" :lg="16">
         <span class="title-page">Questionnaire</span>
-        <el-table :data="questions" style="width: 100%" setScrollLeft="left" stripe="stripe" border="true">
+        <el-table :data="questions" style="width: 100%" setScrollLeft="left" :stripe="stripe" :border="border">
           <el-table-column prop="num_question" label="N° question" width="120"/>
           <el-table-column prop="question" label="Corps" min-width="200"/>
           <el-table-column prop="type_question" label="Type" width="100"/>
@@ -24,6 +24,8 @@ export default {
     data(){
       return{
         questions: [],
+        stripe: true,
+        border: true,
       }
     },
      methods:{

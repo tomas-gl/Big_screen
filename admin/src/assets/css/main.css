@@ -31,7 +31,7 @@ body{
   font-weight: bold;
 }
 
-.el-form-item__label{
+.el-form-item__label, .el-radio__label{
   color: #ffffff !important;
 }
 

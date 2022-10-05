@@ -5,7 +5,7 @@
       <el-col :xs="20" :sm="18" :lg="16">
         <span class="title-page">Réponses</span>
         <div v-for="answers in answersByUser" :key="answers.id">
-          <el-table :data="answers" setScrollLeft="left" stripe="true" border="true">
+          <el-table :data="answers" setScrollLeft="left" :stripe="stripe" :border="border">
             <el-table-column prop="num_question" label="N° question" width="120"/>
             <el-table-column prop="question" label="Corps" min-width="200"/>
             <el-table-column prop="answer" label="Réponse" width="200"/>
@@ -26,6 +26,8 @@ export default {
       return{
         answersByUser: [
         ],
+        stripe: true,
+        border: true,
       }
     },
      methods:{
