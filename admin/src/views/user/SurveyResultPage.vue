@@ -2,8 +2,8 @@
     <div>
         <HeaderUser />
         <p>Ci-dessous vous trouverez les réponses au sondage réalisé le {{format_date(surveyDate) }}</p>
-        <el-row v-for="answer in answers" :key="answer.id">
-            <el-col :span="16" :offset="4">
+        <el-row v-for="answer in answers" :key="answer.id" justify="center">
+            <el-col  :xs="20" :sm="18" :lg="16">
                 <el-card class="box-card">
                     <span>Question {{answer.num_question}}/20</span>
                     <p class="corps_question">{{answer.question}}</p>
