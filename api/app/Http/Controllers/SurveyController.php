@@ -23,8 +23,6 @@ class SurveyController extends Controller
     {
         $survey = Survey::all()->first();
         $questions = Question::where('survey_id', $survey->id)->get();
-        // dd($survey, $questions);
-        // return view('welcome', $questions);
         return response()->json($questions);
     }
 
@@ -78,12 +76,13 @@ class SurveyController extends Controller
     public function getSurveyResult($token)
     {
         $answerUser = AnswerUser::where('token', $token)->first();
+        $answerDate = $answerUser->created_at;
         $answers = Answer::where('answer_user_id', $answerUser->id)->get();
         foreach($answers as $one){
             $one['question'] = $one->questions()->pluck('question')->first();
             $one['num_question'] = $one->questions()->pluck('num_question')->first();
         }
-        return response()->json($answers);
+        return response()->json([$answers, $answerDate]);
     }
 
 }

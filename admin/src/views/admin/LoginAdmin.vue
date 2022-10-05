@@ -18,7 +18,7 @@
           </span>
         </span>
 
-        <el-button type="primary" @click="login" size="large">S'identifier</el-button>
+        <el-button type="primary" @click="login" size="large">S'identifier <el-icon><ArrowRight /></el-icon></el-button>
 
       </el-col>
     </el-row>
@@ -59,6 +59,15 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.el-col{
+    box-shadow: 0 15px 30px 1px #8080805e !important;
+    background-color: rgba(35 38 47 / 70%) !important;
+    border-radius: 5px;
+    margin: 1.5em auto;
+    padding: 2rem 3rem;
+}
+.el-form{
+  margin-bottom: 2rem;
+}
 </style>

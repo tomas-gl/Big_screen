@@ -46,7 +46,7 @@
 <script>
 import HeaderUser from '@/components/HeaderUser.vue';
 import SurveyCard from '@/components/SurveyCard.vue';
-import Promotion from '@element-plus/icons-vue'
+import {Promotion} from '@element-plus/icons-vue';
 import axios from 'axios';
 
 export default {

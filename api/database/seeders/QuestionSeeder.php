@@ -195,7 +195,7 @@ class QuestionSeeder extends Seeder
                     'survey_id' => '1',
                     'num_question' => '20',
                     'question' => 'Quelle nouvelle fonctionnalité devrait exister sur Bigscreen ?',
-                    'type_question' => 'C',
+                    'type_question' => 'B',
                     'possible_answers' => '',
                     "created_at" => Carbon::now(),
                     "updated_at" => Carbon::now(),

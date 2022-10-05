@@ -28,12 +28,48 @@ class AdminController extends Controller
         ]);
     }
 
-    public function getSurveyDatas()
+
+    // Nom: getSurveyDatas
+    // Type:
+    // Parametres ou champs (data):
+    // Role:
+    public function getSurveyDatas() 
     {
-        $questions = Question::get();
         $answers = Answer::get();
-        // dd($survey, $questions);
-        // return view('welcome', $questions);
-        return response()->json([$questions, $answers]);
+        $answerUser = AnswerUser::get();
+        $questions = Question::get();
+        foreach($answers as $one){
+            $one['question'] = $one->questions()->pluck('question')->first();
+            $one['num_question'] = $one->questions()->pluck('num_question')->first();
+        }
+        foreach($answerUser as $one){
+            if(isset($answers)){
+                $answersByUser[] = Answer::where('answer_user_id', $one->id)->get();
+            }
+
+        }
+        if(isset($answersByUser)){
+            foreach($answersByUser as $answerByUser){
+                foreach($answerByUser as $one){
+                    $one['question'] = $one->questions()->pluck('question')->first();
+                    $one['num_question'] = $one->questions()->pluck('num_question')->first();
+                }
+            }
+        }
+        if(!isset($answerByUser)){
+            return response()->json([
+                'answers' => $answers,
+                'questions' => $questions,
+            ]);   
+        }
+        else{
+            return response()->json([
+                'answers' => $answers,
+                'questions' => $questions,
+                'answersByUser' => $answersByUser,
+            ]);
+        }
+
     }
+
 }

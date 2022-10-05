@@ -20,7 +20,9 @@ Route::post('login', [AdminController::class, 'login']);
 
 Route::get('isLoggedIn', [AdminController::class, 'isLoggedIn']);
 
-Route::get('getSurveyDatas', [App\Http\Controllers\AdminController::class, 'getSurveyDatas']);
+Route::get('getSurveyDatas',[AdminController::class, 'getSurveyDatas']);
+
+Route::get('getQuestionsSurvey',[SurveyController::class, 'getQuestionsSurvey']);
 
 Route::get('getQuestionsSurvey', [SurveyController::class, 'getQuestionsSurvey']);
 
