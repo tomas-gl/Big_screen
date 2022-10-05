@@ -53,7 +53,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
     .answers{
         border: solid 1px white;
         border-style: dashed;

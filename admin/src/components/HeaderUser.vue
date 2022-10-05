@@ -18,7 +18,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .logo {
         position: sticky;
         top: 0;

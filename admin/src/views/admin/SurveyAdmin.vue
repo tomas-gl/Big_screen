@@ -1,8 +1,11 @@
 <template>
   <div>
-    <h1>Survey Admin</h1>
     <SideNavBar />
-    <router-view/>
+    <el-row>
+      <el-col :span="24">
+        <h1>Survey Admin</h1>
+      </el-col>
+    </el-row>
   </div>
 
 </template>
@@ -16,5 +19,12 @@ export default {
 </script>
 
 <style>
-
+.el-row{
+  margin-left: 200px;
+}
+  @media (max-width: 768px){
+  .el-row{
+    margin-left: 0px;
+  }
+}
 </style>

@@ -3,9 +3,7 @@
     <SideNavBar />
     <el-row>
       <el-col :span="24">
-        <div class="test">
           <h1>Answers Admin</h1>
-        </div>
       </el-col>
     </el-row>
   </div>
@@ -20,7 +18,12 @@ export default {
 </script>
 
 <style>
-.test{
-  margin-left: 200px !important;
+.el-row{
+  margin-left: 200px;
+}
+  @media (max-width: 768px){
+  .el-row{
+    margin-left: 0px;
+  }
 }
 </style>

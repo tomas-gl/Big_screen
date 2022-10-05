@@ -38,8 +38,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .el-row{
   margin-left: 200px;
+}
+  @media (max-width: 768px){
+  .el-row{
+    margin-left: 0px;
+  }
 }
 </style>

@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { Vuex } from 'vuex'; 
+import Vuex from 'vuex'; 
 import App from './App.vue'
 import routes from './router/index'
 import store from './store/index'
