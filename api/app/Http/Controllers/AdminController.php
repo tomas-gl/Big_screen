@@ -34,4 +34,20 @@ class AdminController extends Controller
         ]);
     }
 
+        // Nom: getSurveyDatas
+    // Type:
+    // Parametres ou champs (data):
+    // Role:
+    public function getSurveyDatas() 
+    {
+        $answers = Answer::get();
+        foreach($answers as $one){
+            $one['question'] = $one->questions()->pluck('question')->first();
+            $one['num_question'] = $one->questions()->pluck('num_question')->first();
+        }
+        // dd($survey, $questions);
+        // return view('welcome', $questions);
+        return response()->json($answers);
+    }
+
 }

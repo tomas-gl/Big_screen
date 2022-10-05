@@ -1,7 +1,7 @@
 <template>
   <el-card class="box-card">
-      <span class="num_question">Question {{ num_question }}/20</span>
-      <p>{{corps_question}}</p>
+      <span>Question {{ num_question }}/20</span>
+      <p class="corps_question">{{corps_question}}</p>
       <div class="options">
           <div v-if="type_question == 'A'" class="typeA">
             <el-radio-group v-model="user_answer">
@@ -22,14 +22,18 @@
               class="option"/>
           </div>
           <div v-if="type_question == 'C'" class="typeC">
-              <p>{{user_answer}}</p>
-              <el-slider
-              @change="getAnswer(id_question)"
-              :step="1" 
-              :min="1"
-              :max="5"
-              v-model="user_answer"
-              class="option"/>
+              <p>{{user_answer}}/5</p>
+              <div class="slider">
+                <span>1</span>
+                  <el-slider
+                  @change="getAnswer(id_question)"
+                  :step="1" 
+                  :min="1"
+                  :max="5"
+                  v-model="user_answer"
+                  class="option"/>
+                <span>5</span>
+              </div>
           </div>
       </div>
   </el-card>
@@ -73,6 +77,12 @@ export default {
 </script>
 
 <style>
+    .slider{
+      display: flex;
+    }
+    .el-slider{
+      margin: 0rem 1rem;
+    }
     .el-radio__label {
       color: #ffffff80;
     }

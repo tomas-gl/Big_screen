@@ -11,10 +11,11 @@ body{
     margin: 1.5em auto;
   }
 
-.num_question {
+.corps_question {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: bold;
+  margin: 0.5rem 0rem 1rem 0rem;
 }
 
 .typeA{

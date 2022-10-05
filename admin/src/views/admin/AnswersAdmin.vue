@@ -1,9 +1,14 @@
 <template>
-    <div>
-      <h1>Answers Admin</h1>
-      <SideNavBar />
-    </div>
-
+  <div>
+    <SideNavBar />
+    <el-row>
+      <el-col :span="24">
+        <div class="test">
+          <h1>Answers Admin</h1>
+        </div>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script>
@@ -15,5 +20,7 @@ export default {
 </script>
 
 <style>
-
+.test{
+  margin-left: 200px !important;
+}
 </style>
