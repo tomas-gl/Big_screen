@@ -16,3 +16,9 @@ body{
   font-size: 1.5rem;
   font-weight: bold;
 }
+
+.typeA{
+  border: solid 1px white;
+  border-style: dashed;
+  padding: 1rem;
+}

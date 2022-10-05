@@ -6,7 +6,7 @@
                 <el-card class="box-card">
                     <span class="num_question">Question {{answer.num_question}}/20</span>
                     <p>{{answer.question}}</p>
-                    <div class="options">
+                    <div class="answers">
                         <p>{{answer.answer}}</p>
                     </div>
                 </el-card>
@@ -44,4 +44,9 @@ export default {
 </script>
 
 <style>
+    .answers{
+        border: solid 1px white;
+        border-style: dashed;
+        padding: 1rem;
+    }
 </style>
