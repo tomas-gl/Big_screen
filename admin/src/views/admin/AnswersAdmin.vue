@@ -57,7 +57,4 @@ export default {
     margin-left: 0px;
   }
 }
-.el-table{
-  margin:2.5rem 0rem 5rem 0rem;
-}
 </style>

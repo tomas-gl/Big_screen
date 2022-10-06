@@ -50,6 +50,10 @@ body{
   color: #ffffff !important;
 }
 
+.el-table{
+  margin:2.5rem 0rem 5rem 0rem;
+}
+
 .cell{
   word-break: normal !important;
 }
