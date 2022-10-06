@@ -13,9 +13,6 @@ export default {
         storage : localStorage,
     }
   },
-//   mounted() {
-//     this.$store.commit('initialiseStore', "first");
-// }, 
 
 }
 </script>

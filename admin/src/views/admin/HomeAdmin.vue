@@ -6,8 +6,8 @@
             <el-col :lg="24">
                 <span class="title-page">Statistiques graphiques des sondages réalisés</span>
                 <span v-if="!dataAnswers.length">
-                <p>Chargement des données... </p>
-                <el-icon class="loading"><Loading /></el-icon>
+                    <p>Chargement des données... </p>
+                    <el-icon class="loading"><Refresh /></el-icon>
                 </span>
             </el-col>
         </el-row>
@@ -53,12 +53,13 @@ export default {
         }
     },
     methods: {
+
+        // Récupère les données des sondages
         async getSurveyData(){
             let url = 'http://127.0.0.1:8000/api/getSurveyDatas'
             await axios.get(url).then(response =>{
                 this.data = response.data
                 this.dataAnswers = "ok",
-                console.log(this.dataAnswer);
                 this.pieData6 = this.createPie(6)
                 this.pieData7 = this.createPie(7)
                 this.pieData10 = this.createPie(10)
@@ -75,9 +76,9 @@ export default {
                 "datasets": [
                     {
                         "backgroundColor": [],
-                        "data": []
+                        "data": [],
                     }
-                ]
+                ],
             }
             let temp = {}
             for (const answer of answers) {
@@ -156,7 +157,6 @@ export default {
     },
     mounted() {
         this.getSurveyData();
-        console.log(this.dataAnswer);
     }
 
 }

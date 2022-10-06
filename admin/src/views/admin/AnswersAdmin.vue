@@ -6,7 +6,7 @@
         <span class="title-page">Liste des sondages réalisés</span>
         <span v-if="!answersByUser.length">
           <p>Chargement des sondages... </p>
-           <el-icon class="loading"><Loading /></el-icon>
+           <el-icon class="loading"><Refresh /></el-icon>
         </span>
         <div v-for="answers in answersByUser" :key="answers.id">
           <span class="sondage_number">Sondage n° {{answers[0].answer_user_id}}</span>
@@ -36,12 +36,12 @@ export default {
       }
     },
      methods:{
+
+      // Récupère les données des sondages
       async getSurveyDatas(){
               let url = 'http://127.0.0.1:8000/api/getSurveyDatas'
               await axios.get(url).then(response =>{
-                console.log(response.data);
                   this.answersByUser = response.data.answersByUser;
-                  console.log(this.answersByUser);
               }).catch(error =>{
                   console.log(error);
               });

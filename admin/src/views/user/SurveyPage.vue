@@ -16,7 +16,7 @@
       <form  @submit.prevent="saveSurvey" novalidate class="form">
         <span v-if="!questions.length">
           <p>Chargement du questionnaire... </p>
-          <el-icon class="loading"><Loading /></el-icon>
+          <el-icon class="loading"><Refresh /></el-icon>
         </span>
         <el-row v-for="question in questions" :key="question.id" justify="center">
           <el-col :xs="20" :sm="18" :lg="16">
@@ -79,10 +79,11 @@ export default {
       }
     },
     methods: {
+
+      // Récupère la liste des questions
       async getQuestions() {
         let url = 'http://127.0.0.1:8000/api/getQuestionsSurvey'
         await axios.get(url).then(response =>{
-          console.log(response.data);
           this.questions = response.data;
           this.questions.forEach(element => {
             if(element.type_question == "C"){
@@ -101,12 +102,12 @@ export default {
         }).catch(error => console.log(error))
       },
 
+      // Sauvegarde un nouveau sondagé créé
       async saveSurvey(){
         this.errors = [];
         this.answers.forEach(element => {
           this.convertedAnswers[element.questionId] = element.answer;
         });
-        console.log(this.convertedAnswers);
         let formData = {answers : this.convertedAnswers};
         let url = 'http://127.0.0.1:8000/api/saveQuestionsSurvey';
         await axios.post(url, formData).then((response) =>{

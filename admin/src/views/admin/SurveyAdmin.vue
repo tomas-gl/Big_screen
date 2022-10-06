@@ -36,11 +36,12 @@ export default {
       }
     },
      methods:{
+
+      // Récupère les données des sondages
       async getSurveyDatas(){
               let url = 'http://127.0.0.1:8000/api/getSurveyDatas'
               await axios.get(url).then(response =>{
                   this.questions = response.data.questions;
-                  console.log(this.questions);
                   this.loading = false;
               }).catch(error =>{
                   console.log(error);
