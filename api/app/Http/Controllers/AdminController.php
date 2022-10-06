@@ -36,6 +36,7 @@ class AdminController extends Controller
     public function getSurveyDatas() 
     {
         $answers = Answer::get();
+
         $answerUser = AnswerUser::get();
         $questions = Question::get();
         foreach($answers as $one){
