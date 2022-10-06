@@ -4,6 +4,9 @@
     <div>
         <h1>Home Admin</h1>
         <Pie :chart-data="pieData6"/>
+        <Pie :chart-data="pieData7"/>
+        <Pie :chart-data="pieData10"/>
+        <Radar :chart-data="radarData"/>
     </div>
 
   </div>
@@ -13,23 +16,16 @@
 <script>
 import SideNavBar from '@/components/SideNavBar.vue';
 import axios from 'axios';
-import { Pie } from 'vue-chartjs';
-
-import {
-ArcElement,
-CategoryScale, Chart as ChartJS, Legend, Title,
-Tooltip
-} from 'chart.js';
+import { ArcElement, CategoryScale, Chart as ChartJS, Legend, LineElement, PointElement, RadialLinearScale, Title, Tooltip } from 'chart.js';
+import { Pie, Radar } from 'vue-chartjs';
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale)
-export default {
-    components: { SideNavBar, Pie },
-    props: {
+ChartJS.register(Title, Tooltip, Legend, PointElement, RadialLinearScale, LineElement)
 
-    },
+export default {
+    components: { SideNavBar, Pie, Radar },
     data() {
         return {
-            loaded: false,
             data: [],
             pieData6: {},
             pieData7: {},
@@ -45,17 +41,19 @@ export default {
                 this.pieData6 = this.createPie(6)
                 this.pieData7 = this.createPie(7)
                 this.pieData10 = this.createPie(10)
+                this.radarData = this.createRadar()
             }).catch(error =>{
                 console.log(error);
             });
         },
     
         createPie(numQuestion) {
-            let answers = this.data.filter(x => x.num_question === numQuestion)
+            let answers = this.data.answers.filter(x => x.num_question === numQuestion)
             let chartData = {
                 "labels": [],
                 "datasets": [
                     {
+                        "backgroundColor": [],
                         "data": []
                     }
                 ]
@@ -71,7 +69,67 @@ export default {
             for (const t in temp) {
                 chartData.labels.push(t)
                 chartData.datasets[0].data.push(temp[t])
+                chartData.datasets[0].backgroundColor.push(this.randomColorChart())
             }
+
+            return chartData
+        },
+        randomColorChart() {
+            var randomColor = Math.floor(Math.random()*16777215).toString(16);
+            return "#" + randomColor
+        },
+        createRadar() {
+            let answers = this.data.answers.filter(x => [11, 12, 13, 14, 15].includes(x.num_question))
+            console.log(answers)
+            let chartData = {
+                "labels": ["Question 11", "Question 12", "Question 13", "Question 14", "Question 15"],
+                "datasets": [
+                    {
+                        "backgroundColor": [this.randomColorChart(), this.randomColorChart(), this.randomColorChart(), this.randomColorChart(), this.randomColorChart()],
+                        "data": []
+                    }
+                ]
+            }
+            for (const answer of answers) {
+
+                switch (answer.num_question) {
+                    case 11:   
+                        if (chartData.datasets[0].data.length == 0)
+                            chartData.datasets[0].data.push(parseInt(answer.answer))
+                        else
+                            chartData.datasets[0].data[0] += parseInt(answer.answer)
+                        break;
+                    case 12:    
+                        if (chartData.datasets[0].data.length == 1)
+                            chartData.datasets[0].data.push(parseInt(answer.answer))
+                        else
+                            chartData.datasets[0].data[1] += parseInt(answer.answer) 
+                        break;
+                    case 13:     
+                        if (chartData.datasets[0].data.length == 2)
+                            chartData.datasets[0].data.push(parseInt(answer.answer))
+                        else
+                            chartData.datasets[0].data[2] += parseInt(answer.answer)
+                        break;
+                    case 14:    
+                        if (chartData.datasets[0].data.length == 3)
+                            chartData.datasets[0].data.push(parseInt(answer.answer))
+                        else
+                            chartData.datasets[0].data[3] += parseInt(answer.answer) 
+                        break;
+                    case 15:     
+                        if (chartData.datasets[0].data.length == 4)
+                            chartData.datasets[0].data.push(parseInt(answer.answer))
+                        else
+                            chartData.datasets[0].data[4] += parseInt(answer.answer)
+                        break;
+                }
+            }
+            chartData.datasets[0].data.forEach((x) => {
+                x = x / chartData.datasets[0].data.length
+                return x
+            })
+            console.log(chartData.datasets[0])
             return chartData
         }
     },
