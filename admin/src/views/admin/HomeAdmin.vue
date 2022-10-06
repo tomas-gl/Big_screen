@@ -1,12 +1,30 @@
 <template>
   <div>
     <SideNavBar />
-    <div>
-        <h1>Home Admin</h1>
-        <Pie :chart-data="pieData6"/>
-        <Pie :chart-data="pieData7"/>
-        <Pie :chart-data="pieData10"/>
-        <Radar :chart-data="radarData"/>
+    <div class="container">
+        <el-row justify="center">
+            <el-col :lg="24">
+                <span class="title-page">Statistiques graphiques des sondages réalisés</span>
+                <span v-if="!dataAnswers.length">
+                <p>Chargement des données... </p>
+                <el-icon class="loading"><Loading /></el-icon>
+                </span>
+            </el-col>
+        </el-row>
+        <el-row justify="center" class="charts">
+            <el-col :sm="24" :lg="12" class="chart">
+                <Pie :chart-data="pieData6"/>
+            </el-col>
+            <el-col :sm="24" :lg="12" class="chart">
+                <Pie :chart-data="pieData7"/>
+            </el-col>
+            <el-col :sm="24" :lg="12" class="chart">
+                <Pie :chart-data="pieData10"/>
+            </el-col>
+            <el-col :sm="24" :lg="12" class="chart">
+                <Radar :chart-data="radarData"/>
+            </el-col>
+        </el-row>
     </div>
 
   </div>
@@ -27,6 +45,7 @@ export default {
     data() {
         return {
             data: [],
+            dataAnswers: [],
             pieData6: {},
             pieData7: {},
             pieData10: {},
@@ -38,6 +57,8 @@ export default {
             let url = 'http://127.0.0.1:8000/api/getSurveyDatas'
             await axios.get(url).then(response =>{
                 this.data = response.data
+                this.dataAnswers = "ok",
+                console.log(this.dataAnswer);
                 this.pieData6 = this.createPie(6)
                 this.pieData7 = this.createPie(7)
                 this.pieData10 = this.createPie(10)
@@ -135,18 +156,34 @@ export default {
     },
     mounted() {
         this.getSurveyData();
+        console.log(this.dataAnswer);
     }
 
 }
 </script>
 
 <style scoped>
-.el-row{
+.container{
   margin-left: 200px;
 }
   @media (max-width: 768px){
-  .el-row{
+  .container{
     margin-left: 0px;
   }
+  .charts{
+    margin: 0rem 5% !important;
+}
+.chart{
+    margin-bottom: 2rem;
+}
+}
+.chart{
+    margin-bottom: 5rem;
+}
+.chart > div{
+    margin: 1rem;
+}
+.charts{
+    margin: 0rem 15%;
 }
 </style>
