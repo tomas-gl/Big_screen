@@ -81,7 +81,7 @@ export default {
       display: flex;
     }
     .el-slider{
-      margin: 0rem 1rem;
+      margin: 0rem 2rem;
     }
     .el-radio__label {
       color: #ffffff80;

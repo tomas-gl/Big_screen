@@ -1,6 +1,18 @@
 <template>
     <div>
       <HeaderUser />
+      <el-row justify="center">
+        <el-col :xs="23" :sm="21" :lg="19" class="intro">
+          <p>
+            Bigscreen est une entreprise développant une application VR
+            permettant aux utilisateurs de regarder en VR des films, émissions TV et jeux vidéos sur un écran géant virtuel, seul ou à plusieurs.
+          </p>
+          <p>
+            Afin de préparer la prochaine itération de son application, Big Screen souhaiterait récolter des informations
+            de votre part via ce sondage.
+          </p>
+        </el-col>
+      </el-row>
       <form  @submit.prevent="saveSurvey" novalidate class="form">
         <el-row v-for="question in questions" :key="question.id" justify="center">
           <el-col :xs="20" :sm="18" :lg="16">
@@ -116,7 +128,18 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+.intro{
+    box-shadow: 0 15px 30px 1px #8080805e !important;
+    background-color: rgba(35 38 47 / 70%) !important;
+    border-radius: 5px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    font-size: 1.25rem;
+    text-align: left;
+    line-height: 1.5;
+}
+
 .form{
   margin: 1rem 0rem 15rem 0rem;
 }
@@ -126,23 +149,8 @@ export default {
 }
 .send_icon{
     margin: 0rem 0rem 0rem 1rem !important;
-    /* transform: rotate(45deg); */
 }
 .el-button{
   transition: 0.5s ease !important;
-}
-.el-alert{
-  margin: 1rem 0 !important;
-  padding: 2rem !important;
-  justify-content: center;
-}
-
-.el-alert__title{
-  font-size: 1rem !important;
-}
-
-.el-icon{
-  font-size: 28px !important;
-  width: 28px !important;
 }
 </style>
