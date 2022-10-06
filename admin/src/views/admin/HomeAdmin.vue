@@ -5,6 +5,7 @@
         <h1>Home Admin</h1>
         <Pie :chart-data="pieData6"/>
     </div>
+
   </div>
 
 </template>
@@ -77,9 +78,17 @@ export default {
     mounted() {
         this.getSurveyData();
     }
+
 }
 </script>
 
-<style>
-
+<style scoped>
+.el-row{
+  margin-left: 200px;
+}
+  @media (max-width: 768px){
+  .el-row{
+    margin-left: 0px;
+  }
+}
 </style>

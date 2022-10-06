@@ -34,5 +34,8 @@ export default {
   height: 100%;
   scroll-behavior: smooth;
   overflow: auto;
+  background-image: url("assets/gradient-blue-background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 </style>
