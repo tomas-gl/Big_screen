@@ -14,6 +14,10 @@
         </el-col>
       </el-row>
       <form  @submit.prevent="saveSurvey" novalidate class="form">
+        <span v-if="!questions.length">
+          <p>Chargement du questionnaire... </p>
+          <el-icon class="loading"><Loading /></el-icon>
+        </span>
         <el-row v-for="question in questions" :key="question.id" justify="center">
           <el-col :xs="20" :sm="18" :lg="16">
             <SurveyCard :question="question" :answers="answers"/>
@@ -39,7 +43,7 @@
                     <p>Si vous désirez consulter vos réponse ultérieurement, vous pouvez consultez
                     cette adresse: 
                     <router-link :to="{ name:'SurveyResult', params: { token: answerUserToken} }">
-                      http:/localhost:8080/surveyresult/{{answerUserToken}}
+                      <p>http:/localhost:8080/surveyresult/{{answerUserToken}}</p>
                     </router-link>
                     </p>
                   </el-descriptions-item>

@@ -87,7 +87,7 @@ class QuestionSeeder extends Seeder
                     'num_question' => '8',
                     'question' => 'Quel casque envisagez-vous d’acheter dans un futur proche ?',
                     'type_question' => 'A',
-                    'possible_answers' => 'Occulus Quest,Occulus Go, HTC Vive Pro, PSVR, Autre, Aucun',
+                    'possible_answers' => 'Occulus Quest, Occulus Go, HTC Vive Pro, PSVR, Autre, Aucun',
                     "created_at" => Carbon::now(),
                     "updated_at" => Carbon::now(),
                 ],

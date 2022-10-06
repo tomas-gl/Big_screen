@@ -9,7 +9,6 @@ use App\Models\Question;
 use App\Models\Survey;
 use App\Models\Answer;
 use App\Models\AnswerUser;
-use App\Models\AnswerQuestion;
 
 class SurveyController extends Controller
 {

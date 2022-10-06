@@ -80,7 +80,7 @@ export default {
         },
         createRadar() {
             let answers = this.data.answers.filter(x => [11, 12, 13, 14, 15].includes(x.num_question))
-            console.log(answers)
+            // console.log(answers)
             let chartData = {
                 "labels": ["Question 11", "Question 12", "Question 13", "Question 14", "Question 15"],
                 "datasets": [
