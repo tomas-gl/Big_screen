@@ -1,14 +1,29 @@
 <template>
   <div>
     <SideNavBar />
-    <div>
-        <h1>Home Admin</h1>
-        <Pie :chart-data="pieData6"/>
-        <Pie :chart-data="pieData7"/>
-        <Pie :chart-data="pieData10"/>
-        <Radar :chart-data="radarData"/>
-    </div>
-
+    <el-row justify="center">
+        <el-col :xs="40" :sm="36" :lg="32">
+            <span class="title-page">Accueil</span>
+            <el-row justify="center"
+                    :gutter="20">
+                <el-col :span="8">   
+                    <Pie :chart-data="pieData6"/>
+                </el-col>
+                <el-col :span="8">   
+                    <Pie :chart-data="pieData7"/>
+                </el-col>
+            </el-row>
+            <el-row justify="center"
+                    :gutter="20">
+                <el-col :span="8">   
+                    <Pie :chart-data="pieData10"/>
+                </el-col>
+                <el-col :span="8">   
+                    <Radar :chart-data="radarData"/>
+                </el-col>
+            </el-row>
+        </el-col>
+    </el-row>
   </div>
 
 </template>
@@ -85,7 +100,10 @@ export default {
                 "labels": ["Question 11", "Question 12", "Question 13", "Question 14", "Question 15"],
                 "datasets": [
                     {
-                        "backgroundColor": [this.randomColorChart(), this.randomColorChart(), this.randomColorChart(), this.randomColorChart(), this.randomColorChart()],
+                        "fill": true,
+                        "borderColor": 'rgb(255, 99, 132)',
+                        "pointBackgroundColor": 'rgb(255, 99, 132)',
+                        "label": "Questions 11 à 15",
                         "data": []
                     }
                 ]
@@ -125,11 +143,7 @@ export default {
                         break;
                 }
             }
-            chartData.datasets[0].data.forEach((x) => {
-                x = x / chartData.datasets[0].data.length
-                return x
-            })
-            console.log(chartData.datasets[0])
+            chartData.datasets[0].data = chartData.datasets[0].data.map(x => x / (answers.length / 5))
             return chartData
         }
     },
@@ -143,6 +157,7 @@ export default {
 <style scoped>
 .el-row{
   margin-left: 200px;
+  margin-bottom: 50px;
 }
   @media (max-width: 768px){
   .el-row{
