@@ -39,7 +39,8 @@ export default {
       }
     },
     methods:{
-      // Login a user
+
+      // identifie un utilisateur
       async login(){
           this.errors = [];
           let formData = new FormData();
@@ -49,7 +50,6 @@ export default {
           await axios.post(url, formData).then(response =>{
               this.$store.commit('addAdmin', response.data.auth_user);
               this.$router.push('/administration/home');
-              console.log(response.data);
           }).catch(error =>{
               this.errors.push(error.response.data.message);
               console.log(error.response);
@@ -70,4 +70,5 @@ export default {
 .el-form{
   margin-bottom: 2rem;
 }
+
 </style>

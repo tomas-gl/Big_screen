@@ -1,7 +1,7 @@
 <template>
     <div>
         <HeaderUser />
-        <p>Ci-dessous vous trouverez les réponses au sondage réalisé le {{format_date(surveyDate) }}</p>
+        <p>Vous trouverez ci-dessous les réponses au sondage réalisé le {{format_date(surveyDate) }}</p>
         <el-row v-for="answer in answers" :key="answer.id" justify="center">
             <el-col  :xs="20" :sm="18" :lg="16">
                 <el-card class="box-card">
@@ -31,14 +31,16 @@ export default {
     },
     methods:{
         
+        //  Affiche les réponses pour un sondage
         async getSurveyResultsById(){ 
             let url = `http://127.0.0.1:8000/api/getSurveyResult/${this.$route.params.token}`;
                 await axios.get(url).then(response =>{
-                    console.log(response.data[0]);
                     this.answers = response.data[0];
                     this.surveyDate = response.data[1];
             }).catch(error => console.log(error));
         },
+
+        //  Formatte une date
         format_date(value){
          if (value) {
            return moment(String(value)).format('YYYY/MM/DD')

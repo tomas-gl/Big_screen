@@ -24,6 +24,7 @@
             </el-row>
         </el-col>
     </el-row>
+
   </div>
 
 </template>
@@ -42,6 +43,7 @@ export default {
     data() {
         return {
             data: [],
+            dataAnswers: [],
             pieData6: {},
             pieData7: {},
             pieData10: {},
@@ -49,10 +51,13 @@ export default {
         }
     },
     methods: {
+
+        // Récupère les données des sondages
         async getSurveyData(){
             let url = 'http://127.0.0.1:8000/api/getSurveyDatas'
             await axios.get(url).then(response =>{
                 this.data = response.data
+                this.dataAnswers = "ok",
                 this.pieData6 = this.createPie(6)
                 this.pieData7 = this.createPie(7)
                 this.pieData10 = this.createPie(10)
@@ -69,9 +74,9 @@ export default {
                 "datasets": [
                     {
                         "backgroundColor": [],
-                        "data": []
+                        "data": [],
                     }
-                ]
+                ],
             }
             let temp = {}
             for (const answer of answers) {
@@ -95,7 +100,7 @@ export default {
         },
         createRadar() {
             let answers = this.data.answers.filter(x => [11, 12, 13, 14, 15].includes(x.num_question))
-            console.log(answers)
+            // console.log(answers)
             let chartData = {
                 "labels": ["Question 11", "Question 12", "Question 13", "Question 14", "Question 15"],
                 "datasets": [
@@ -155,13 +160,28 @@ export default {
 </script>
 
 <style scoped>
-.el-row{
+.container{
   margin-left: 200px;
   margin-bottom: 50px;
 }
   @media (max-width: 768px){
-  .el-row{
+  .container{
     margin-left: 0px;
   }
+  .charts{
+    margin: 0rem 5% !important;
+}
+.chart{
+    margin-bottom: 2rem;
+}
+}
+.chart{
+    margin-bottom: 5rem;
+}
+.chart > div{
+    margin: 1rem;
+}
+.charts{
+    margin: 0rem 15%;
 }
 </style>

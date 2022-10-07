@@ -28,8 +28,6 @@ export default {
         background: rgb(12, 12, 84);
     }
     .logo > img{
-        /* position: sticky;
-        top: 0; */
         width: 30%;
     }
 </style>

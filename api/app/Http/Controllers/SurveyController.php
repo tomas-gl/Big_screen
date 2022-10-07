@@ -9,16 +9,16 @@ use App\Models\Question;
 use App\Models\Survey;
 use App\Models\Answer;
 use App\Models\AnswerUser;
-use App\Models\AnswerQuestion;
 
 class SurveyController extends Controller
 {
 
 
-    // Nom: getQuestionsSurvey
-    // Type:
-    // Parametres ou champs (data):
-    // Role:
+    /**
+     * Récupère la liste des questions
+     *
+     * @return response
+     */
     public function getQuestionsSurvey() 
     {
         $survey = Survey::all()->first();
@@ -26,10 +26,12 @@ class SurveyController extends Controller
         return response()->json($questions);
     }
 
-    // Nom: saveQuestionsSurvey
-    // Type:
-    // Parametres ou champs (data):
-    // Role:
+    /**
+     * Sauvegarde un nouveau sondagé créé
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return response
+     */
     public function saveQuestionsSurvey(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -69,10 +71,12 @@ class SurveyController extends Controller
         }
     }
 
-    // Nom: getSurveyResult
-    // Type:
-    // Parametres ou champs (data):
-    // Role:
+    /**
+     * Affiche les réponses pour un sondage
+     *
+     * @param  string  $token
+     * @return response
+     */
     public function getSurveyResult($token)
     {
         $answerUser = AnswerUser::where('token', $token)->first();

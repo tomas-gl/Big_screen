@@ -53,6 +53,8 @@ export default {
       }
     },
     methods:{
+
+      // Récupère une réponse rentrée
       getAnswer(value){
         this.answers.forEach(el => {
           if(el['questionId'] == value){
@@ -60,6 +62,8 @@ export default {
           }
         });
       },
+
+      // Formatte le choix des réponses
       answerCleaning(possible_answers) {
         let cleaned_answers = possible_answers.split(",")
         .map(answer => {

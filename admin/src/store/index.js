@@ -1,7 +1,7 @@
 
 import { createStore } from 'vuex';
 
-// Initialise the store
+// Initialise le store
 const store = createStore({
 	state: {
 		loggedAdmin: localStorage.getItem('loggedAdmin')
@@ -19,7 +19,6 @@ const store = createStore({
 
 store.subscribe( (state) => {
     localStorage.setItem('loggedAdmin',  JSON.stringify(state));
-	console.log(localStorage.getItem('loggedAdmin'));
 });
 
 export default store;

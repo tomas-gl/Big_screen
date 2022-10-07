@@ -5,6 +5,7 @@
             <el-menu-item index="home"><el-icon><PieChart /></el-icon>Accueil</el-menu-item>
             <el-menu-item index="survey"><el-icon><Document /></el-icon>Sondage</el-menu-item>
             <el-menu-item index="answers"><el-icon><List /></el-icon>Réponses</el-menu-item>
+            <el-menu-item index="/administration" @click="logout"><el-icon><DArrowLeft /></el-icon>Déconnexion</el-menu-item>
         </el-menu>
         <el-menu :router="true" class="el-menu-horizontal-demo" mode="horizontal" text-color="#fff" background-color="#11101d">
             <el-sub-menu index="administration">
@@ -12,6 +13,7 @@
                 <el-menu-item index="home"><el-icon><PieChart /></el-icon>Accueil</el-menu-item>
                 <el-menu-item index="survey"><el-icon><Document /></el-icon>Sondage</el-menu-item>
                 <el-menu-item index="answers"><el-icon><List /></el-icon>Réponses</el-menu-item>
+                <el-menu-item index="/administration" @click="logout"><el-icon><DArrowLeft /></el-icon>Déconnexion</el-menu-item>
             </el-sub-menu>
         </el-menu>
     </div>
@@ -23,6 +25,13 @@ export default {
         return {
             logo: require("../assets/logo_bigscreen.png")
         }
+    },
+     methods:{
+        
+      // Logout un utilisateur
+      async logout(){
+         localStorage.clear();
+        },
     }
 }
 </script>

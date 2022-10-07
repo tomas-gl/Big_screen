@@ -6,8 +6,6 @@ import SurveyAdmin from '../views/admin/SurveyAdmin.vue'
 import SurveyPage from '../views/user/SurveyPage.vue'
 import SurveyResultPage from '../views/user/SurveyResultPage.vue'
 
-// localStorage.clear();
-
 const routes = [
     {
         path: '/',

@@ -16,6 +16,12 @@ use App\Models\AnswerQuestion;
 class AdminController extends Controller
 {
 
+    /**
+     * Identifie un user
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return response
+     */
     public function login(Request $request)
     {
 
@@ -29,10 +35,11 @@ class AdminController extends Controller
     }
 
 
-    // Nom: getSurveyDatas
-    // Type:
-    // Parametres ou champs (data):
-    // Role:
+    /**
+     * Récupère les données des sondages
+     *
+     * @return response
+     */
     public function getSurveyDatas() 
     {
         $answers = Answer::get();

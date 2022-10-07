@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             [
             'name' => 'admin',
             'email' => 'admin@admin.fr',
-            'password' => Hash::make('admin'), // crypté le mot de passe ,
+            'password' => Hash::make('admin'),
             ]
             ]);
     }
