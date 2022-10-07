@@ -11,17 +11,21 @@
                 </span>
             </el-col>
         </el-row>
-        <el-row justify="center" class="charts">
+        <el-row justify="center" class="charts" v-if="dataAnswers.length">
             <el-col :sm="24" :lg="12" class="chart">
+                <p>Quel marque de casque VR utilisez-vous ?</p>
                 <Pie :chart-data="pieData6"/>
             </el-col>
             <el-col :sm="24" :lg="12" class="chart">
+                <p>Sur quel magasin d’application achetez vous des contenus VR ?</p>
                 <Pie :chart-data="pieData7"/>
             </el-col>
             <el-col :sm="24" :lg="12" class="chart">
+                <p>Quel casque envisagez-vous d’acheter dans un futur proche ?</p>
                 <Pie :chart-data="pieData10"/>
             </el-col>
             <el-col :sm="24" :lg="12" class="chart">
+                <p>Regroupement des points de qualité</p>
                 <Radar :chart-data="radarData"/>
             </el-col>
         </el-row>
