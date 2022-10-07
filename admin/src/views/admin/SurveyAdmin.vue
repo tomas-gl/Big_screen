@@ -3,7 +3,7 @@
     <SideNavBar />
     <el-row justify="center">
       <el-col :xs="20" :sm="18" :lg="16">
-        <span class="title-page">Questionnaire</span>
+        <span class="title-page">Questionnaire du sondage</span>
         <el-table v-loading="loading"
                   element-loading-text="Chargement du questionnaire..." 
                   :data="questions"
@@ -37,11 +37,11 @@ export default {
     },
      methods:{
 
-      // Récupère les données des sondages
-      async getSurveyDatas(){
-              let url = 'http://127.0.0.1:8000/api/getSurveyDatas'
+      // Récupère la liste des questions
+      async getQuestions(){
+              let url = 'http://127.0.0.1:8000/api/getQuestionsSurvey'
               await axios.get(url).then(response =>{
-                  this.questions = response.data.questions;
+                  this.questions = response.data;
                   this.loading = false;
               }).catch(error =>{
                   console.log(error);
@@ -49,7 +49,7 @@ export default {
           },
     },
     mounted() {
-       this.getSurveyDatas();
+       this.getQuestions();
     }
 }
 </script>
