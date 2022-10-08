@@ -87,9 +87,6 @@ export default {
     .el-slider{
       margin: 0rem 2rem;
     }
-    .el-radio__label {
-      color: #ffffff80;
-    }
     .typeB{
       width: 80%;
       margin: auto;

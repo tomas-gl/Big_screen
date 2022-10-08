@@ -72,7 +72,7 @@ class SurveyController extends Controller
     }
 
     /**
-     * Affiche les réponses pour un sondage
+     * Récupère les réponses pour un sondage
      *
      * @param  string  $token
      * @return response

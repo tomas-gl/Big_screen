@@ -1,8 +1,8 @@
 <template>
   <div>
     <HeaderUser />
-    <el-row>
-      <el-col :span="12" :offset="6">
+    <el-row justify="center">
+      <el-col :xs="18" :sm="12" :lg="8">
         <el-form label-position="top">
           <el-form-item label="Email">
             <el-input type="email" v-model="email"/>
@@ -18,7 +18,7 @@
           </span>
         </span>
 
-        <el-button type="primary" @click="login" size="large">S'identifier <el-icon><ArrowRight /></el-icon></el-button>
+        <el-button @click="login" size="large">S'identifier <el-icon><ArrowRight /></el-icon></el-button>
 
       </el-col>
     </el-row>

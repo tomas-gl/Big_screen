@@ -171,16 +171,17 @@ export default {
   margin-left: 200px;
 }
   @media (max-width: 768px){
-  .container{
-    margin-left: 0px;
-  }
-  .charts{
-    margin: 0rem 5% !important;
+    .container{
+        margin-left: 0px;
+    }
+    .charts{
+        margin: 0rem 5% !important;
+    }
+    .chart{
+        margin-bottom: 2rem;
+    }
 }
-.chart{
-    margin-bottom: 2rem;
-}
-}
+
 .chart{
     margin-bottom: 5rem;
 }

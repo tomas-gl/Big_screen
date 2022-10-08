@@ -50,7 +50,7 @@
                 </el-descriptions>
               </el-dialog>
             </span>
-            <el-button type="primary" native-type="submit" size="large" class="send">
+            <el-button native-type="submit" size="large" class="send">
               Finaliser <el-icon class="send_icon"><Promotion /></el-icon>
             </el-button>
           </el-col>
