@@ -106,15 +106,17 @@ export default {
         },
         createRadar() {
             let answers = this.data.answers.filter(x => [11, 12, 13, 14, 15].includes(x.num_question))
-            // console.log(answers)
             let chartData = {
                 "labels": ["Question 11", "Question 12", "Question 13", "Question 14", "Question 15"],
                 "datasets": [
                     {
-                        "backgroundColor": [this.randomColorChart(), this.randomColorChart(), this.randomColorChart(), this.randomColorChart(), this.randomColorChart()],
+                        "backgroundColor": "rgba(10,181,198,0.2)",
+                        "borderColor": "rgba(179,181,198,1)",
+                        "fill": true,
+                        "label": "Questions 11 à 15",
                         "data": []
                     }
-                ]
+                ],
             }
             for (const answer of answers) {
 
@@ -155,7 +157,6 @@ export default {
                 x = x / chartData.datasets[0].data.length
                 return x
             })
-            console.log(chartData.datasets[0])
             return chartData
         }
     },

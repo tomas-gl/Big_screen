@@ -112,7 +112,6 @@ export default {
         let url = 'http://127.0.0.1:8000/api/saveQuestionsSurvey';
         await axios.post(url, formData).then((response) =>{
             if(response.status == 200){
-                console.log(response.data);
                 if(response.data.validatorErrors){
                   this.errors.push(response.data.validatorErrors);
                   console.log(this.errors);
